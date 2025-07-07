@@ -12,6 +12,16 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
+
+    @auth
+        {{-- Affichage de message d'alert --}}
+        @if (session('content'))
+            <x-alert :type="session('type')">
+                {{ session('content') }}
+            </x-alert>
+        @endif
+    @endauth
+
     <main class="principal">
         @yield('mainPass')
     </main>
