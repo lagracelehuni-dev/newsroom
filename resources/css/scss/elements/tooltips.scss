@@ -1,0 +1,87 @@
+/*------------------------------*\
+    Tooltips
+\*------------------------------*/
+$top: -32px;
+$bottom: -32px;
+$right: 90%;
+$right-5: 150%;
+$left: 90%;
+$left-5: 150%;
+$transXR: 50%;
+$transXL: -50%;
+
+%tooltip {
+    content: attr(data-title);
+    position: absolute;
+    padding: .5rem 1rem;
+    border-radius: 1.5rem;
+    // background-color: var(--blue950);
+    @include backdrop-filter(system-colors(black), .8, 20px);
+    border: 1px solid var(--white);
+    color: var(--white);
+    white-space: nowrap;
+    font-size: $font-size-xs;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    z-index: 50;
+
+    &.tooltip--top-left::after {
+        top: $top;
+        left: $left;
+        transform: translateX($transXL); 
+        @extend %tooltip;
+    }
+    &.tooltip--top-left-5::after {
+        top: $top;
+        left: $left-5;
+        transform: translateX($transXL); 
+        @extend %tooltip;
+    }
+
+    &.tooltip--top-right::after {
+        top: $top;
+        right: $right;
+        transform: translateX($transXR);
+        @extend %tooltip;
+    }
+
+    &.tooltip--bottom-left::after {
+        bottom: $bottom;
+        left: $left;
+        transform: translateX($transXL);
+        @extend %tooltip;
+    }
+
+    &.tooltip--bottom-left-5::after {
+        bottom: $bottom;
+        left: $left-5;
+        transform: translateX($transXL);
+        @extend %tooltip;
+    }
+
+    &.tooltip--bottom-right::after {
+        bottom: $bottom;
+        right: $right;
+        transform: translateX($transXR);
+        @extend %tooltip;
+    }
+
+    &.tooltip--bottom-right-5::after {
+        bottom: $bottom;
+        right: $right-5;
+        transform: translateX($transXR);
+        @extend %tooltip;
+    }
+
+    &:hover::after {
+        opacity: 1;
+        visibility: visible;
+    }
+}

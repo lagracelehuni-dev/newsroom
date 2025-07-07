@@ -1,0 +1,281 @@
+// Mobile S
+@media (min-width: 320px) and (max-width: 576px) {
+    .alert,
+    .comment-message,
+    .confirm-action {
+        width: 90% !important;
+    }
+
+    .article__reactions {
+        grid-template-columns: 2fr 1fr;
+        justify-content: space-between;
+
+        .article__reaction--first {
+            @include flexbox (flex, row, center, start, .35rem !important);
+        }
+    }
+
+    .post__react {
+        @include flexbox (flex, row, center, center, 5px);
+        @include width-height(70px, 40px);
+    }
+
+    .profil__user-infos {
+        @include flexbox (flex, column !important, stretch, start, .75rem !important);
+    }
+
+    .profil__bio,
+    .profil__location,
+    .profil__website {
+        font-size: $font-size-sm !important;
+    }
+
+    .notification__icon {
+                @include width-height (50px !important, 50px !important);
+    }
+
+    .notification__item {
+        @include width-height (100%);
+        @include flexbox (flex, row, start, space-between, .25rem !important);
+    }
+
+    .notification__content {
+        width: 100%;
+        max-width: 200px !important;
+        @include flexbox (flex, column, start, start, .1rem);
+    }
+
+    .notification__actions {
+        @include width-height (80px, 80px);
+        @include flexbox (flex, column !important, center, end, .5rem !important);
+    }
+
+    /*------------------------------*\
+        Sidebar
+    \*------------------------------*/
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+    .bloc__absolute {
+        @include width-height (100%, 100vh !important, calc((breakpoints(xxl) * 50) / 100));
+        box-shadow: none;
+        border-radius: 0 !important;
+        overflow: visible;
+    }
+
+    .homepage__main {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: 100vh;
+        border-radius: 0 !important;
+    }
+
+    /*------------------------------*\
+        Sidebar
+    \*------------------------------*/
+
+    .sidebar  {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .section__header {
+        display: none !important;
+    }
+
+    .sidebar--left {
+        display: none !important;
+    }
+
+    .section__header {
+        padding-top: 1rem !important;
+    }
+
+    .section__header--compose {
+        width: 100% !important;
+        // padding-top: 1rem !important;
+        @include flexbox (flex !important, row, center, space-between);
+        // gap: 0 !important;
+
+        .section__header-close {
+            @include flexbox (flex, row, center, center);
+            @include width-height (30px, 30px);
+            box-shadow: 0 0 6px rgba($color: #000000, $alpha: .1);
+            border: 1px solid var(--gray200);
+            border-radius: 50%;
+            background-color: var(--gray50);
+            font-size: $font-size-lg;
+            color: var(--gray500);
+        }
+    }
+
+    .sidebar__categories {
+        display: none;
+    }
+
+    .sidebar--right {
+        position: absolute;
+        right: -100%;
+        width: 100% !important;
+        height: 100vh;
+        opacity: 0;
+        background-color: var(--white);
+        z-index: 11111;
+
+        &.is-visible {
+            right: 0;
+            opacity: 1;
+            transition: right .3s ease-in-out , opacity .3s ease-in-out;
+        }
+    }
+
+    .sidebar__content {
+        width: 100% !important;
+        padding: 0 .75rem !important;
+        padding-top: 1rem;
+    }
+
+    /*------------------------------*\
+        Searchbar
+    \*------------------------------*/
+
+    .sidebar__searchbar {
+        gap: .5rem;
+    }
+    .sidebar__close  {
+        display: flex;
+    }
+
+    .display {
+        // box-shadow: none !important;
+        top: 50px !important;
+        max-height: 70vh;
+
+        &::-webkit-scrollbar {
+            width: 0 !important;
+        }
+
+        .display__authors {
+            display: none !important;
+        }
+    }
+
+    /*------------------------------*\
+        Alerts
+    \*------------------------------*/
+    .popup__content {
+        width: 95% !important;
+    }
+
+    .popup__stacks {
+        width: 100% !important;
+        display: flex;
+        align-items: start;
+        flex: 1 1 auto;
+        flex-direction: column !important;
+        align-self: stretch !important;
+
+        a {
+            width: 100% !important;
+        }
+    }
+
+    .post__thumbnail-container {
+        margin: .5rem 0;
+        padding: 0 0 !important;
+    }
+
+    /*------------------------------*\
+        Components
+    \*------------------------------*/
+
+    .navbar,
+    .navbar--category,
+    .navbar-bottom {
+        display: flex;
+    }
+
+    .pannel-auth{
+        &.is-visible {
+            display: flex;
+            -webkit-animation: opacity .3s ease-in;
+                    animation: opacity .3s ease-in;
+
+            .pannel-auth__container {
+                -webkit-animation: downUp .4s ease-in;
+                        animation: downUp .4s ease-in;
+            }
+
+
+            .pannel-auth__close {
+                top: -70px;
+                opacity: 1;
+
+                -webkit-animation: inDownTop .65s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                        animation: inDownTop .65s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            }
+
+        }
+    }
+
+    /*------------------------------*\
+        Compose
+    \*------------------------------*/
+    .compose__body {
+        padding: 1rem 1rem;
+    }
+
+    .bloc-gap,
+    .slug {
+        gap: 8px !important;
+    }
+
+    .category__bloc {
+        @include flexbox (flex, column !important, start !important, start, 15px !important);
+    }
+
+    .category__bloc-content,
+    .category__content {
+        max-width: 100% !important;
+    }
+
+    .compose__import-btn {
+        font-size: $font-size-sm;
+    }
+
+}
+
+// Mobile M
+@media (min-width: 375px) and (max-width : 424px) {
+
+}
+
+// Mobile L
+@media (min-width: 425px) and (max-width : 575px) {
+
+}
+
+// Mobile
+@media (min-width: 576px) and (max-width : 767px) {
+    .sidebar--right {
+        display: flex !important;
+    }
+}
+
+
+// Tablette
+@media (min-width: 768px) and (max-width : 1023px) {
+    .navbar {
+        display: none;
+    }
+}
+
+// Laptop
+@media (min-width: 1024px) and (max-width : 1439px) {
+
+}
+
+// Laptop L
+@media (min-width: 1440px) {
+
+}

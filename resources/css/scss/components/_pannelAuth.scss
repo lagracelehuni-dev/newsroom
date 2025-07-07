@@ -1,0 +1,78 @@
+.pannel-auth {
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: none;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    @include backdrop-filter(system-colors(white), .5, 20px);
+    z-index: $z-index-full;
+
+    .pannel-auth__container {
+        position: absolute;
+        bottom: 0;
+        @include width-height (100%, auto);
+        @include flexbox (flex, row, center, start);
+        // padding: 2.5rem 0;
+        box-shadow: 0 -5px 5px rgba($color: #000000, $alpha: .1);
+        background-color: var(--white);
+        // border: 1px solid var(--gray500);
+        // border-radius: 2rem;
+        border-top-left-radius: 1.5rem;
+        border-top-right-radius: 1.5rem;
+        // z-index: $z-index-full;
+
+        .pannel-auth__meta-pannel {
+            display: block;
+            width: 100%;
+            height: auto;
+            // position: absolute;
+            padding: 1.5rem .5rem;
+            bottom: 116px;
+            left: 10px;
+            z-index: 2;
+            // box-shadow: 0 0 9px rgba($color: #000000, $alpha: .1);
+            // border: 1px solid var(--gray200);
+            // border-radius: .5rem;
+            // background-color: var(--white);
+            // animation: zoomIn .2s ease-in;
+        }
+
+        .pannel-auth__bloc {
+            justify-content: center;
+            gap: 1rem;
+            padding: 2.5rem 3rem;
+        }
+
+        .pannel-auth__close {
+            position: absolute;
+            top: 70px;
+            opacity: 0;
+            left: 50%;
+            height: 50px;
+            width: 50px;
+            @include flexbox (flex, row, center, center);
+            box-shadow: 0 0 9px rgba($color: #000000, $alpha: .2);
+            // border: 1px solid var(--black);
+            border-radius: 50%;
+
+            background-color: var(--gray100);
+
+            color: var(--gray600);
+            font-size: $font-size-lg;
+            font-weight: $font-weight-bold;
+            transform: translateX(-50%);
+            transition: color .3s linear, background-color .3s linear;
+
+            &:hover {
+                color: var(--gray100);
+                background-color: var(--black);
+            }
+        }
+    }
+}
+
+@keyframes identifier {
+
+}

@@ -1,0 +1,216 @@
+///*------------------------------*\
+//        Variables
+//\*------------------------------*/
+
+// Colors
+$system-colors: (
+    black: #000000,
+    white: #FFFFFF,
+);
+
+$principal-colors: (
+    blue50: #eff6ff,
+    blue100: #dbeafe,
+    blue200: #bfdbfe,
+    blue500: #3b82f6,
+    blue600: #2563eb,
+    blue900: #1e3a8a,
+    blue950: #172554,
+);
+
+$others-color: (
+    slate50: #f8fafc,
+    gray50: #f9fafb,
+    gray100: #f3f4f6,
+    gray200: #e5e7eb,
+    gray400: #9ca3af,
+    gray500: #6B7280,
+    gray600: #4b5563,
+    green50: #f0fdf4,
+    green300: #86efac,
+    green500: #22c55e,
+    green600: #16a34a,
+    green950: #052e16,
+    rose50: #fff1f2,
+    rose500: #f43f5e,
+    rose600: #e11d48,
+    red50: #fef2f2,
+    red100: #fee2e2,
+    red300: #fca5a5,
+    red500: #ef4444,
+    red600: #dc2626,
+    red950: #450a0a,
+);
+
+$types : danger, success, warning;
+
+$alert-color: (
+    success50: #f0fdf4,
+    success100: #dcfce7,
+    success500: #22c55e,
+    success600: #16a34a,
+    success950: #052e16,
+    danger50: #fef2f2,
+    danger100: #fee2e2,
+    danger500: #ef4444,
+    danger600: #dc2626,
+    danger950: #450a0a,
+    warning50: #fefce8,
+    warning100: #fef9c3,
+    warning500: #eab308,
+    warning600: #ca8a04,
+    warning950: #422006,
+);
+
+// $container-xl: 1440px;
+// $container: 1200px;
+// $container-sm: 800px;
+
+$enable-container-classes:    true !default;
+
+// scss-docs-start grid-breakpoints
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+) !default;
+// scss-docs-end grid-breakpoints
+
+@include _assert-ascending($grid-breakpoints, "$grid-breakpoints");
+@include _assert-starts-at-zero($grid-breakpoints, "$grid-breakpoints");
+
+// scss-docs-start container-max-widths
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1320px
+) !default;
+// scss-docs-end container-max-widths
+
+@include _assert-ascending($container-max-widths, "$container-max-widths");
+
+$grid-gutter-width:           1.5rem !default;
+$container-padding-x: $grid-gutter-width !default;
+
+$halong: 'Halong';
+$spaceGrotesk: 'Space Grotesk';
+
+$font-family: $spaceGrotesk;
+
+$font-size-base:              1rem !default; // Assumes the browser default, typically `16px`
+$font-size-xs:                $font-size-base * .75 !default;
+$font-size-sm:                $font-size-base * .875 !default;
+$font-size-lg:                $font-size-base * 1.25 !default;
+
+// scss-docs-start font-sizes
+$font-sizes: (
+  base: $font-size-base,
+  xs: $font-size-xs,
+  sm: $font-size-sm,
+  lg: $font-size-lg
+) !default;
+
+$fnt-sizes: (
+  mobile: (
+    base: 1rem,
+    xs: 0.75rem,
+    sm: 0.875rem,
+    lg: 1.25rem,
+  ),
+  tablet: (
+    base: 1.125rem,
+    xs: 0.843rem,
+    sm: 1rem,
+    lg: 1.375rem,
+  ),
+  desktop: (
+    base: 1.25rem,
+    xs: 0.938rem,
+    sm: 1.063rem,
+    lg: 1.563rem,
+  )
+);
+
+// scss-docs-end font-sizes
+
+$font-weight-lighter:         lighter !default;
+$font-weight-light:           300 !default;
+$font-weight-normal:          400 !default;
+$font-weight-medium:          500 !default;
+$font-weight-semibold:        600 !default;
+$font-weight-bold:            700 !default;
+$font-weight-bolder:          bolder !default;
+
+$line-height-base:            1.5 !default;
+$line-height-sm:              1.25 !default;
+$line-height-lg:              2 !default;
+
+$h1-font-size:                $font-size-base * 2.5 !default;
+$h2-font-size:                $font-size-base * 2 !default;
+$h3-font-size:                $font-size-base * 1.75 !default;
+$h4-font-size:                $font-size-base * 1.5 !default;
+$h5-font-size:                $font-size-base * 1.25 !default;
+$h6-font-size:                $font-size-base !default;
+
+// scss-docs-start font-sizes
+$title-font-sizes: (
+  1: $h1-font-size,
+  2: $h2-font-size,
+  3: $h3-font-size,
+  4: $h4-font-size,
+  5: $h5-font-size,
+  6: $h6-font-size
+) !default;
+// scss-docs-end font-sizes
+
+// Borders
+$br-width: 1px; // border-width
+$br-style: solid; // border-style
+$br-color: ""; // border-color
+$br-radius: 1px; // border-radius
+
+// Btn
+$btn-padding-y: 0.375rem;
+$btn-padding-x: 0.75rem;
+
+$btn-border-radius: 0.25rem;
+$btn-rounded: 100px;
+$btn-border: 1px solid;
+
+$btn-font-size: $font-size-base;
+$btn-text-align: center;
+$btn-line-height: 1.5;
+$btn-font-weight: 500;
+
+$btn-cursor: pointer;
+
+$btn-primary-color: var(--blue600);
+$btn-secondary-color: var(--blue950);
+$btn-hover-primary-color: var(--blue500);
+$btn-hover-secondary-color: var(--blue950);
+$btn-color: var(--blue50);
+
+// Btn-lg
+$btn-lg-padding-y: 0.5rem;
+$btn-lg-padding-x: 1rem;
+
+$btn-lg-border-radius: 0.375rem;
+
+$btn-lg-font-size: $font-size-lg;
+
+// btn-sm
+$btn-sm-padding-y: 0.25rem;
+$btn-sm-padding-x: 0.5rem;
+
+$btn-sm-border-radius: 0.2rem;
+
+$btn-sm-font-size: $font-size-sm;
+
+$z-index-full: 9999999999;
+$z-index-full-2: 99999999999;
+$z-index-full-3: 99999999999999;

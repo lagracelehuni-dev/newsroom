@@ -1,0 +1,42 @@
+@mixin responsive-font-sizes {
+  // Mobile - défaut
+  $sizes: map-get($fnt-sizes, mobile);
+
+  $font-size-base: map-get($sizes, base);
+  $font-size-xs: map-get($sizes, xs);
+  $font-size-sm: map-get($sizes, sm);
+  $font-size-lg: map-get($sizes, lg);
+
+  // Définition CSS
+  body {
+    font-size: $font-size-base;
+  }
+
+  // Tablet
+  @media (min-width: 768px) {
+    $sizes: map-get($fnt-sizes, tablet);
+
+    $font-size-base: map-get($sizes, base);
+    $font-size-xs: map-get($sizes, xs);
+    $font-size-sm: map-get($sizes, sm);
+    $font-size-lg: map-get($sizes, lg);
+
+    body {
+      font-size: $font-size-base;
+    }
+  }
+
+  // Desktop
+  @media (min-width: 1024px) {
+    $sizes: map-get($fnt-sizes, desktop);
+
+    $font-size-base: map-get($sizes, base);
+    $font-size-xs: map-get($sizes, xs);
+    $font-size-sm: map-get($sizes, sm);
+    $font-size-lg: map-get($sizes, lg);
+
+    body {
+      font-size: $font-size-base;
+    }
+  }
+}

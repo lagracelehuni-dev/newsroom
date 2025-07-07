@@ -1,0 +1,180 @@
+/*------------------------------*\
+    Profil page
+/*------------------------------*/
+.profil__body {
+    @include width-height (100%);
+
+    .profil__user-infos {
+        @include width-height (100%);
+        @include flexbox (flex, row, stretch, start);
+        padding: 1rem 0;
+        border-bottom: 2px solid var(--gray100);
+
+        .profil__avatar {
+            width: auto;
+            padding: 0 1rem;
+            @include flexbox (flex, row, center, start);
+
+            .profil__avatar-bloc-photo {
+                @include width-height (200px, 200px);
+                @include flexbox (flex, row, center, center);
+                border-radius: 1rem;
+                overflow: hidden;
+
+                .avatar__img {
+                    width: 100%;
+                }
+            }
+        }
+
+        .profil__informations {
+            width: 100%;
+            padding: 0 1rem;
+            @include flexbox (flex, column, start, start);
+
+            .infos__principals {
+                width: 100%;
+                @include flexbox (flex, column, start, start);
+                padding: 0;
+                margin: 0;
+                font-size: $font-size-base;
+                color: var(--gray600);
+                font-weight: $font-weight-normal;
+
+                &.border--bottom {
+                    padding: .5rem 0;
+                    border-bottom: 1px solid var(--gray200);
+
+                    &:first-child {
+                        padding-top: 0;
+                    }
+                    &:nth-child(3){
+                        border-bottom: none !important;
+                    }
+                }
+
+                .profil__fullname {
+                    color: var(--black);
+                    font-size: $h2-font-size;
+                    font-weight: $font-weight-semibold;
+                }
+
+                .profil__username {
+                    color: var(--gray600);
+                    font-size: $font-size-lg;
+                    font-weight: $font-weight-normal;
+                }
+
+                .profil__bio {
+                    @include flexbox (flex, row, center, start, 1rem);
+
+                    -webkit-box-orient: vertical;
+                    max-height: 3.6rem; /* Hauteur maximale pour 2 lignes */
+                    display: -webkit-box;
+                    -webkit-line-clamp: 2;
+                    line-clamp: 2; /* Nombre de lignes à afficher avant troncature */
+                    text-overflow: ellipsis;
+                    font-size: $font-size-base;
+                    font-style: italic;
+                    overflow: hidden;
+                    // margin-bottom: .2rem;
+
+                    &.is-truncated {
+                        cursor: pointer;
+                        transition: background-color .3s ease;
+
+                        &:hover {
+                            background-color: var(--gray50);
+                        }
+                    }
+
+                    &.show-more {
+                        max-height: none;
+                        -webkit-line-clamp: unset;
+                        line-clamp: unset;
+                        overflow: visible;
+                        text-overflow: unset;
+                    }
+                }
+
+                .profil__location {
+                    @include flexbox (flex, row, center, start, .5rem);
+                }
+
+                .profil__website {
+                    @include flexbox (flex, row, center, start, .3rem);
+
+                    a:hover {
+                        color: var(--blue900);
+                        text-decoration: underline;
+                    }
+                }
+            }
+
+            .profil__btn-edit {
+                margin-top: .5rem;
+            }
+        }
+    }
+
+    .profil__user-articles {
+        width: 100%;
+
+        .profil__user-articles-header {
+            width: 100%;
+            @include flexbox (flex, row, start, start);
+            border-bottom: 2px solid var(--gray100);
+
+            .profil__user-count {
+                position: relative;
+                @include width-height (100%);
+                @include flexbox (flex, row, center, center);
+                padding: 1rem;
+                font-size: $font-size-base;
+                font-weight: $font-weight-semibold;
+
+                &.count--articles {
+                    color: var(--blue900);
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        bottom: -2px;
+                        left: 0;
+                        width: 100%;
+                        height: 3px;
+                        z-index: 1;
+                        background-color: var(--blue900);
+                    }
+                }
+
+                &.count--views {
+                    color: var(--blue600);
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        bottom: -2px;
+                        left: 0;
+                        width: 100%;
+                        height: 3px;
+                        z-index: 1;
+                        background-color: var(--blue600);
+                    }
+                }
+            }
+        }
+
+        .profil__no-articles {
+            @include width-height (100%);
+            @include flexbox (flex, column, center, center);
+            padding: 2rem;
+
+            .profil__no-articles-text {
+                @include width-height (100%, 100%);
+                @include flexbox (flex, row, center, center);
+                font-size: $font-size-base;
+                color: var(--gray500);
+                font-weight: $font-weight-normal;
+            }
+        }
+    }
+}

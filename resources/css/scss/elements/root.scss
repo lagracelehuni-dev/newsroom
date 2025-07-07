@@ -1,0 +1,22 @@
+:root {
+    /* System colors */
+    @each $color, $value in $system-colors {
+        --#{$color}: #{$value};
+    }
+
+    /* Principals colors */
+    @each $color, $value in $principal-colors {
+        --#{$color}: #{$value};
+    }
+
+    /* Others colors */
+    @each $color, $value in $others-color {
+        --#{$color}: #{$value};
+    }
+
+    /* Alert colors */
+    @each $color, $value in $alert-color {
+        --#{$color}: #{$value};
+    }
+    
+}

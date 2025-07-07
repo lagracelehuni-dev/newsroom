@@ -1,0 +1,4 @@
+@mixin borders-all ($border-width: $br-width, $border-style: $br-style, $border-color: $br-color, $border-radius: $br-radius) {
+    border: $border-width $border-style $border-color;
+    border-radius: $border-radius;
+}

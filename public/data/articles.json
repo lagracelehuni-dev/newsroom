@@ -1,0 +1,914 @@
+{
+    "articles": [
+    {
+        "category": "Politique",
+        "articles": [
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Carlos Silva",
+            "publication_time": "2025-03-07T09:00:00Z",
+            "title": "Les répercussions des réformes fiscales en Amérique Latine",
+            "content": "",
+            "reading_time": "8 min",
+            "likes": 100,
+            "comments": 35,
+            "shares": 40
+            },
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Isabelle Dumont",
+            "publication_time": "2025-03-06T12:30:00Z",
+            "title": "Les défis politiques de l'Union Européenne",
+            "content": "",
+            "reading_time": "7 min",
+            "likes": 150,
+            "comments": 50,
+            "shares": 60
+            },
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "John Williams",
+            "publication_time": "2025-03-05T14:45:00Z",
+            "title": "L'impact du populisme sur les démocraties modernes",
+            "content": "",
+            "reading_time": "6 min",
+            "likes": 120,
+            "comments": 30,
+            "shares": 45
+            },
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Akira Yamamoto",
+            "publication_time": "2025-03-04T16:00:00Z",
+            "title": "Les relations diplomatiques entre le Japon et la Chine",
+            "content": "",
+            "reading_time": "9 min",
+            "likes": 200,
+            "comments": 75,
+            "shares": 85
+            },
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Fatima Ahmed",
+            "publication_time": "2025-03-03T10:15:00Z",
+            "title": "La politique migratoire en Europe : enjeux et solutions",
+            "content": "",
+            "reading_time": "5 min",
+            "likes": 130,
+            "comments": 40,
+            "shares": 50
+            }
+        ]
+    },
+    {
+        "category": "Économie",
+        "articles": [
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Mohammed Ali",
+            "publication_time": "2025-03-07T11:00:00Z",
+            "title": "Les nouvelles tendances de l'économie mondiale post-pandémie",
+            "content": "",
+            "reading_time": "7 min",
+            "likes": 140,
+            "comments": 60,
+            "shares": 70
+            },
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Maria Gonzalez",
+            "publication_time": "2025-03-06T13:15:00Z",
+            "title": "Les cryptomonnaies : avenir de l'économie numérique",
+            "content": "",
+            "reading_time": "8 min",
+            "likes": 180,
+            "comments": 80,
+            "shares": 100
+            },
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Nadia Belkacem",
+            "publication_time": "2025-03-05T17:45:00Z",
+            "title": "L'impact de l'IA sur le marché de l'emploi",
+            "content": "",
+            "reading_time": "6 min",
+            "likes": 110,
+            "comments": 35,
+            "shares": 45
+            },
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Rajesh Kumar",
+            "publication_time": "2025-03-04T15:30:00Z",
+            "title": "La croissance des startups en Inde",
+            "content": "",
+            "reading_time": "7 min",
+            "likes": 150,
+            "comments": 55,
+            "shares": 60
+            },
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Anna Nowak",
+            "publication_time": "2025-03-03T08:00:00Z",
+            "title": "Les politiques économiques de la Pologne face aux défis européens",
+            "content": "",
+            "reading_time": "9 min",
+            "likes": 200,
+            "comments": 90,
+            "shares": 120
+            }
+        ]
+    },
+    {
+        "category": "International",
+        "articles": [
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Liam O'Connor",
+            "publication_time": "2025-03-07T08:30:00Z",
+            "title": "Les tensions croissantes entre l'Inde et le Pakistan",
+            "content": "",
+            "reading_time": "6 min",
+            "likes": 130,
+            "comments": 45,
+            "shares": 50
+            },
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Jun Ho Lee",
+            "publication_time": "2025-03-06T14:45:00Z",
+            "title": "Les nouvelles alliances géopolitiques en Asie-Pacifique",
+            "content": "",
+            "reading_time": "8 min",
+            "likes": 180,
+            "comments": 60,
+            "shares": 70
+            },
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Olga Ivanova",
+            "publication_time": "2025-03-05T10:00:00Z",
+            "title": "L'Ukraine et ses relations avec l'Occident",
+            "content": "",
+            "reading_time": "7 min",
+            "likes": 140,
+            "comments": 50,
+            "shares": 60
+            },
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "James Brown",
+            "publication_time": "2025-03-04T13:00:00Z",
+            "title": "La Chine et sa politique étrangère : un virage vers l'Afrique",
+            "content": "",
+            "reading_time": "9 min",
+            "likes": 210,
+            "comments": 100,
+            "shares": 120
+            },
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Amira El Fassi",
+            "publication_time": "2025-03-03T11:30:00Z",
+            "title": "Les tensions politiques en Afrique du Nord et leurs implications globales",
+            "content": "",
+            "reading_time": "5 min",
+            "likes": 100,
+            "comments": 40,
+            "shares": 45
+            }
+        ]
+    },
+    {
+        "category": "Société",
+        "articles": [
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Mohammed Al-Mansoori",
+            "publication_time": "2025-03-07T10:00:00Z",
+            "title": "La répercussion du digital sur les sociétés modernes",
+            "content": "",
+            "reading_time": "7 min",
+            "likes": 140,
+            "comments": 60,
+            "shares": 70
+            },
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Siti Nurhaliza",
+            "publication_time": "2025-03-06T15:30:00Z",
+            "title": "L'impact de l'immigration sur la culture en Europe",
+            "content": "",
+            "reading_time": "8 min",
+            "likes": 150,
+            "comments": 75,
+            "shares": 85
+            },
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Tariq Jamil",
+            "publication_time": "2025-03-05T11:45:00Z",
+            "title": "La montée des inégalités sociales en Afrique",
+            "content": "",
+            "reading_time": "6 min",
+            "likes": 120,
+            "comments": 45,
+            "shares": 55
+            },
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Liu Wei",
+            "publication_time": "2025-03-04T12:00:00Z",
+            "title": "La transformation des villes chinoises en mégapoles modernes",
+            "content": "",
+            "reading_time": "9 min",
+            "likes": 180,
+            "comments": 95,
+            "shares": 110
+            },
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Tatiana Sokolova",
+            "publication_time": "2025-03-03T16:30:00Z",
+            "title": "Le vieillissement de la population en Russie : défis à venir",
+            "content": "",
+            "reading_time": "7 min",
+            "likes": 130,
+            "comments": 50,
+            "shares": 60
+            }
+        ]
+    },
+    {
+        "category": "Cyber sécurité",
+        "articles": [
+            {
+            "image": "../assets/img/articles/cybersecurite/",
+            "author_profile": "",
+            "author_name": "Nashit Murtaza",
+            "publication_time": "2025-03-07T09:30:00Z",
+            "title": "Les menaces actuelles du cyberespace : un état des lieux",
+            "content": "",
+            "reading_time": "6 min",
+            "likes": 150,
+            "comments": 50,
+            "shares": 60
+            },
+            {
+            "image": "../assets/img/articles/cybersecurite/",
+            "author_profile": "",
+            "author_name": "Claire Dubois",
+            "publication_time": "2025-03-06T14:00:00Z",
+            "title": "Les nouvelles techniques de phishing et comment s'en protéger",
+            "content": "",
+            "reading_time": "7 min",
+            "likes": 120,
+            "comments": 40,
+            "shares": 55
+            },
+            {
+            "image": "../assets/img/articles/cybersecurite/",
+            "author_profile": "",
+            "author_name": "Ibrahim Al-Khalil",
+            "publication_time": "2025-03-05T16:15:00Z",
+            "title": "La sécurité des données dans l'ère de l'Internet des objets",
+            "content": "",
+            "reading_time": "8 min",
+            "likes": 170,
+            "comments": 65,
+            "shares": 75
+            },
+            {
+            "image": "../assets/img/articles/cybersecurite/",
+            "author_profile": "",
+            "author_name": "Julian Richter",
+            "publication_time": "2025-03-04T10:00:00Z",
+            "title": "Les attaques par ransomware et leurs conséquences économiques",
+            "content": "",
+            "reading_time": "9 min",
+            "likes": 210,
+            "comments": 85,
+            "shares": 95
+            },
+            {
+            "image": "../assets/img/articles/cybersecurite/",
+            "author_profile": "",
+            "author_name": "Elena Petrov",
+            "publication_time": "2025-03-03T12:30:00Z",
+            "title": "La cybersécurité dans les entreprises : bonnes pratiques et stratégies",
+            "content": "",
+            "reading_time": "7 min",
+            "likes": 140,
+            "comments": 50,
+            "shares": 65
+            }
+        ]
+    },
+    {
+        "category": "Entrepreneuriat",
+        "articles": [
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Daniel Ocampo",
+            "publication_time": "2025-03-07T10:00:00Z",
+            "title": "Comment réussir sa première levée de fonds pour une startup",
+            "content": "",
+            "reading_time": "7 min",
+            "likes": 160,
+            "comments": 60,
+            "shares": 70
+            },
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Sarah Khoury",
+            "publication_time": "2025-03-06T13:30:00Z",
+            "title": "Le secret d'une gestion d'équipe efficace pour une entreprise en croissance",
+            "content": "",
+            "reading_time": "8 min",
+            "likes": 190,
+            "comments": 75,
+            "shares": 80
+            },
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Tarek Hassan",
+            "publication_time": "2025-03-05T15:15:00Z",
+            "title": "Les pièges à éviter lors de la création d'une startup",
+            "content": "",
+            "reading_time": "6 min",
+            "likes": 120,
+            "comments": 45,
+            "shares": 55
+            },
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Arianna Moretti",
+            "publication_time": "2025-03-04T09:45:00Z",
+            "title": "L'importance de l'innovation pour la pérennité d'une entreprise",
+            "content": "",
+            "reading_time": "9 min",
+            "likes": 180,
+            "comments": 80,
+            "shares": 95
+            },
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "David Lee",
+            "publication_time": "2025-03-03T11:00:00Z",
+            "title": "Comment attirer les investisseurs en 2025",
+            "content": "",
+            "reading_time": "8 min",
+            "likes": 150,
+            "comments": 55,
+            "shares": 70
+            }
+        ]
+    },
+    {
+        "category": "Santé",
+        "articles": [
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Rajesh Gupta",
+            "publication_time": "2025-03-07T14:30:00Z",
+            "title": "Les dernières découvertes sur le traitement du cancer",
+            "content": "",
+            "reading_time": "7 min",
+            "likes": 200,
+            "comments": 85,
+            "shares": 90
+            },
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Emma Johnson",
+            "publication_time": "2025-03-06T17:00:00Z",
+            "title": "La santé mentale des jeunes adultes : un problème grandissant",
+            "content": "",
+            "reading_time": "8 min",
+            "likes": 170,
+            "comments": 60,
+            "shares": 75
+            },
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Zhen Hua",
+            "publication_time": "2025-03-05T13:30:00Z",
+            "title": "Les dernières avancées dans les soins de la peau",
+            "content": "",
+            "reading_time": "6 min",
+            "likes": 140,
+            "comments": 50,
+            "shares": 60
+            },
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Carlos Gutierrez",
+            "publication_time": "2025-03-04T12:00:00Z",
+            "title": "Les bénéfices d'un régime alimentaire équilibré pour la longévité",
+            "content": "",
+            "reading_time": "7 min",
+            "likes": 130,
+            "comments": 45,
+            "shares": 50
+            },
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Jin Woo Park",
+            "publication_time": "2025-03-03T14:00:00Z",
+            "title": "L'importance de l'activité physique pour prévenir les maladies chroniques",
+            "content": "",
+            "reading_time": "6 min",
+            "likes": 110,
+            "comments": 40,
+            "shares": 50
+            }
+        ]
+    },
+    {
+        "category": "Films & Séries",
+        "articles": [
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "James Cooper",
+            "publication_time": "2025-03-07T10:45:00Z",
+            "title": "Les films à ne pas manquer en 2025",
+            "content": "",
+            "reading_time": "7 min",
+            "likes": 250,
+            "comments": 95,
+            "shares": 120
+            },
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Sofia Petrov",
+            "publication_time": "2025-03-06T12:00:00Z",
+            "title": "Les séries les plus attendues de cette année",
+            "content": "",
+            "reading_time": "8 min",
+            "likes": 230,
+            "comments": 85,
+            "shares": 110
+            },
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Dwayne Johnson",
+            "publication_time": "2025-03-05T18:00:00Z",
+            "title": "Les coulisses de la production de films à gros budget",
+            "content": "",
+            "reading_time": "6 min",
+            "likes": 170,
+            "comments": 60,
+            "shares": 75
+            },
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Lina Fathi",
+            "publication_time": "2025-03-04T11:30:00Z",
+            "title": "Les meilleures adaptations de livres en films",
+            "content": "",
+            "reading_time": "7 min",
+            "likes": 180,
+            "comments": 70,
+            "shares": 90
+            },
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Matthew Zhang",
+            "publication_time": "2025-03-03T09:45:00Z",
+            "title": "Les films de science-fiction qui ont marqué l'histoire",
+            "content": "",
+            "reading_time": "8 min",
+            "likes": 200,
+            "comments": 80,
+            "shares": 100
+            }
+        ]
+    },
+    {
+        "category": "Musique",
+        "articles": [
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Gabriel Torres",
+            "publication_time": "2025-03-07T13:00:00Z",
+            "title": "Les tendances musicales à suivre en 2025",
+            "content": "",
+            "reading_time": "7 min",
+            "likes": 210,
+            "comments": 85,
+            "shares": 100
+            },
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Yuki Nakamura",
+            "publication_time": "2025-03-06T15:00:00Z",
+            "title": "Les artistes émergents du hip-hop en Asie",
+            "content": "",
+            "reading_time": "6 min",
+            "likes": 180,
+            "comments": 70,
+            "shares": 85
+            },
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Amara Diallo",
+            "publication_time": "2025-03-05T14:00:00Z",
+            "title": "La fusion des genres musicaux : un phénomène mondial",
+            "content": "",
+            "reading_time": "8 min",
+            "likes": 220,
+            "comments": 90,
+            "shares": 110
+            },
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Luca Bianchi",
+            "publication_time": "2025-03-04T11:30:00Z",
+            "title": "Les concerts virtuels : l'avenir des événements musicaux",
+            "content": "",
+            "reading_time": "7 min",
+            "likes": 160,
+            "comments": 60,
+            "shares": 80
+            },
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Maria Garcia",
+            "publication_time": "2025-03-03T10:15:00Z",
+            "title": "Le rôle des plateformes de streaming dans l'industrie musicale",
+            "content": "",
+            "reading_time": "6 min",
+            "likes": 170,
+            "comments": 65,
+            "shares": 75
+            }
+        ]
+    },
+    {
+        "category": "Jeux vidéo",
+        "articles": [
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Lucas Ferreira",
+            "publication_time": "2025-03-07T10:30:00Z",
+            "title": "Les jeux vidéo les plus attendus de 2025",
+            "content": "",
+            "reading_time": "6 min",
+            "likes": 250,
+            "comments": 95,
+            "shares": 120
+            },
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Nina Rodriguez",
+            "publication_time": "2025-03-06T12:30:00Z",
+            "title": "La réalité virtuelle dans le gaming : un nouvel horizon",
+            "content": "",
+            "reading_time": "7 min",
+            "likes": 220,
+            "comments": 80,
+            "shares": 100
+            },
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Tomo Tanaka",
+            "publication_time": "2025-03-05T16:45:00Z",
+            "title": "L'impact des jeux en ligne multijoueurs sur les sociétés modernes",
+            "content": "",
+            "reading_time": "8 min",
+            "likes": 210,
+            "comments": 75,
+            "shares": 90
+            },
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Rajiv Sharma",
+            "publication_time": "2025-03-04T14:00:00Z",
+            "title": "L'évolution des graphismes dans les jeux vidéo : du pixel au réalisme",
+            "content": "",
+            "reading_time": "7 min",
+            "likes": 180,
+            "comments": 70,
+            "shares": 85
+            },
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Paula Morales",
+            "publication_time": "2025-03-03T13:00:00Z",
+            "title": "Les meilleurs jeux de rôle de 2025",
+            "content": "",
+            "reading_time": "6 min",
+            "likes": 160,
+            "comments": 60,
+            "shares": 75
+            }
+        ]
+    },
+    {
+        "category": "Art & Design",
+        "articles": [
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Aurelia Schmidt",
+            "publication_time": "2025-03-07T09:45:00Z",
+            "title": "Les tendances du design graphique en 2025",
+            "content": "",
+            "reading_time": "6 min",
+            "likes": 180,
+            "comments": 70,
+            "shares": 85
+            },
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Felix Zhang",
+            "publication_time": "2025-03-06T11:00:00Z",
+            "title": "L'impact de l'art numérique sur le marché de l'art traditionnel",
+            "content": "",
+            "reading_time": "8 min",
+            "likes": 200,
+            "comments": 80,
+            "shares": 100
+            },
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Elena Vasilieva",
+            "publication_time": "2025-03-05T13:45:00Z",
+            "title": "Les artistes de rue et l'influence sur la culture urbaine",
+            "content": "",
+            "reading_time": "7 min",
+            "likes": 160,
+            "comments": 65,
+            "shares": 75
+            },
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Ismail Al-Farsi",
+            "publication_time": "2025-03-04T14:30:00Z",
+            "title": "La fusion de l'art et de la technologie : une nouvelle ère créative",
+            "content": "",
+            "reading_time": "9 min",
+            "likes": 220,
+            "comments": 90,
+            "shares": 110
+            },
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Gina Liao",
+            "publication_time": "2025-03-03T12:30:00Z",
+            "title": "L'art minimaliste et son influence sur le design moderne",
+            "content": "",
+            "reading_time": "7 min",
+            "likes": 180,
+            "comments": 70,
+            "shares": 85
+            }
+        ]
+    },
+    {
+        "category": "Mode & Beauté",
+        "articles": [
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Chloe Martin",
+            "publication_time": "2025-03-07T12:00:00Z",
+            "title": "Les tendances de la mode pour l'été 2025",
+            "content": "",
+            "reading_time": "6 min",
+            "likes": 210,
+            "comments": 85,
+            "shares": 100
+            },
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Sofia Almeida",
+            "publication_time": "2025-03-06T14:30:00Z",
+            "title": "Les soins de la peau : nouveaux traitements et produits",
+            "content": "",
+            "reading_time": "7 min",
+            "likes": 180,
+            "comments": 70,
+            "shares": 85
+            },
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Mariana Costa",
+            "publication_time": "2025-03-05T15:00:00Z",
+            "title": "Les accessoires de mode incontournables de 2025",
+            "content": "",
+            "reading_time": "6 min",
+            "likes": 160,
+            "comments": 65,
+            "shares": 75
+            },
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "David Robertson",
+            "publication_time": "2025-03-04T10:30:00Z",
+            "title": "L'influence de la mode éthique sur les grandes marques",
+            "content": "",
+            "reading_time": "8 min",
+            "likes": 220,
+            "comments": 85,
+            "shares": 95
+            },
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Yu Mi Park",
+            "publication_time": "2025-03-03T11:15:00Z",
+            "title": "Le maquillage durable : une tendance en plein essor",
+            "content": "",
+            "reading_time": "7 min",
+            "likes": 190,
+            "comments": 75,
+            "shares": 90
+            }
+        ]
+    },
+    {
+        "category": "Voyages",
+        "articles": [
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Omar El-Mansour",
+            "publication_time": "2025-03-07T16:00:00Z",
+            "title": "Les destinations incontournables à visiter en 2025",
+            "content": "",
+            "reading_time": "6 min",
+            "likes": 190,
+            "comments": 75,
+            "shares": 95
+            },
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Isabella Rossi",
+            "publication_time": "2025-03-06T13:30:00Z",
+            "title": "Voyager de manière responsable : les meilleures pratiques",
+            "content": "",
+            "reading_time": "7 min",
+            "likes": 180,
+            "comments": 70,
+            "shares": 85
+            },
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Yasmin Abdi",
+            "publication_time": "2025-03-05T12:00:00Z",
+            "title": "Les plus belles plages secrètes autour du monde",
+            "content": "",
+            "reading_time": "8 min",
+            "likes": 220,
+            "comments": 90,
+            "shares": 110
+            },
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Xiaoming Li",
+            "publication_time": "2025-03-04T14:00:00Z",
+            "title": "Les meilleurs itinéraires pour un road trip en Asie",
+            "content": "",
+            "reading_time": "7 min",
+            "likes": 210,
+            "comments": 80,
+            "shares": 100
+            },
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Anna Novak",
+            "publication_time": "2025-03-03T10:15:00Z",
+            "title": "Les voyages en train à travers l'Europe : une expérience unique",
+            "content": "",
+            "reading_time": "6 min",
+            "likes": 180,
+            "comments": 65,
+            "shares": 80
+            }
+        ]
+    },
+    {
+        "category": "Sport",
+        "articles": [
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "James O'Connor",
+            "publication_time": "2025-03-07T18:00:00Z",
+            "title": "Les grands événements sportifs à ne pas manquer en 2025",
+            "content": "",
+            "reading_time": "6 min",
+            "likes": 250,
+            "comments": 95,
+            "shares": 120
+            },
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Hassan Zayed",
+            "publication_time": "2025-03-06T17:00:00Z",
+            "title": "La révolution des équipements sportifs connectés",
+            "content": "",
+            "reading_time": "7 min",
+            "likes": 220,
+            "comments": 80,
+            "shares": 100
+            },
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Lucia Alvarez",
+            "publication_time": "2025-03-05T19:00:00Z",
+            "title": "L'impact de l'alimentation sur la performance sportive",
+            "content": "",
+            "reading_time": "8 min",
+            "likes": 230,
+            "comments": 90,
+            "shares": 110
+            },
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Nina Petrovic",
+            "publication_time": "2025-03-04T11:30:00Z",
+            "title": "Les athlètes qui font bouger les lignes en 2025",
+            "content": "",
+            "reading_time": "7 min",
+            "likes": 200,
+            "comments": 75,
+            "shares": 90
+            },
+            {
+            "image": "",
+            "author_profile": "",
+            "author_name": "Markus Jansen",
+            "publication_time": "2025-03-03T09:45:00Z",
+            "title": "Les tendances du fitness à suivre cette année",
+            "content": "",
+            "reading_time": "6 min",
+            "likes": 180,
+            "comments": 65,
+            "shares": 80
+            }
+        ]
+    }
+  ]
+}

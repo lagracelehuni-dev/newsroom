@@ -1,0 +1,264 @@
+/* ==========// Article for profil //========== */
+.post {
+    width: 100%;
+    display: flex;
+    // padding: 0 1rem;
+    padding-top: 1.5rem;
+    border-bottom: 2px solid var(--gray200);
+    // @include backdrop-filter(system-colors(white), .1, 20px);
+}
+
+.post__content {
+    @include flexbox (flex, column, start, start);
+    width: 100%;
+
+    .post__header {
+        @include flexbox(flex, row, center, start, .5rem);
+        width: 100%;
+        padding: 0 1rem;
+        padding-bottom: .5rem;
+        border-bottom: 1px solid var(--gray100);
+
+        .post__author-avatar {
+            height: 25px;
+            width: 25px;
+
+            border-radius: 50%;
+
+            overflow: hidden;
+
+            img { width: 100%; }
+        }
+
+        .post__author-info {
+            display: flex;
+            align-items: center;
+
+            .post__author-name {
+                color: var(--black);
+                font-weight: $font-weight-semibold;
+                font-size: $font-size-base;
+                cursor: pointer;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+
+            i {
+                font-size: 3px;
+                color: var(--gray600);
+                margin: 0 .5rem;
+            }
+
+            .post__date {
+                color: var(--gray600);
+                font-size: $font-size-base;
+            }
+        }
+    }
+
+    .post__body {
+        @include flexbox (flex, column, center, start);
+        padding-top: .5rem;
+        padding-bottom: .5rem;
+
+        .post__text {
+            padding: 0 1rem;
+            .post__title {
+                font-weight: $font-weight-bold;
+                font-size: $h5-font-size;
+                margin-bottom: .5rem;
+            }
+
+            .post__description {
+                -webkit-box-orient: vertical;
+                max-height: 4.5em;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                line-clamp: 3; /* Nombre de lignes à afficher avant troncature */
+                text-overflow: ellipsis;
+                font-size: $font-size-base;
+                overflow: hidden;
+                // margin-bottom: .2rem;
+            }
+
+            .post__read-more {
+                width: max-content;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                margin: .5rem 0;
+                // padding: 0.15rem .85rem;
+
+                // border-radius: 100px;
+                // border: 1px solid var(--gray200);
+
+                // background-color: var(--gray100);
+
+                color: var(--blue600);
+                font-size: $font-size-base;
+                line-height: 1.5;
+                font-weight: 500;
+
+                transition: all .4s ease;
+
+                &:hover {
+                    // border-color: var(--blue600);
+                    // background-color: var(--blue600);
+                    text-decoration: underline;
+                    color: var(--blue500);
+                }
+            }
+        }
+
+        .post__thumbnail-container {
+            width: 100%;
+            @include flexbox (flex, row, center, start);
+            margin: .5rem 0;
+            padding: 0 1rem;
+        }
+
+        .post__thumbnail {
+            @include width-height(100%, 300px);
+            // margin: .5rem;
+            padding: 0;
+
+            // border: 1px solid var(--gray200);
+            border-radius: 5px;
+
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+
+            overflow: hidden;
+
+
+            .post__thumbnail-overlay {
+                width: 100%;
+                height: 100%;
+                display: none;
+                background-color: rgba($color: system-colors(white), $alpha: .5);
+            }
+
+            &:hover .post__thumbnail-overlay {
+                display: block;
+                animation: opacity .2s linear;
+            }
+
+
+
+            img { width: 100%; }
+        }
+
+        .post__meta {
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            width: 100%;
+            margin: .5rem 0;
+            padding: 0 1rem;
+
+            .post__category {
+                padding: 0.25rem 1rem;
+
+                border: 1px solid var(--blue200);
+                border-radius: 50px;
+
+                background-color: var(--blue50);
+
+                color: var(--blue600);
+                font-size: $font-size-sm;
+                font-weight: 500;
+
+                &:hover {
+                    color: var(--blue500);
+                }
+            }
+
+            i.ico {
+                font-size: 3px;
+                margin: 0 .6rem;
+            }
+
+            .post__reading-time {
+                color: var(--gray600);
+                font-size: $font-size-sm;
+            }
+        }
+    }
+
+    .post__footer {
+        padding-top: .5rem;
+        padding-bottom: .5rem;
+        border-top: 1px solid var(--gray100);
+
+        .post__reactions {
+            display: flex;
+            align-items: center;
+
+            p {
+                margin-left: 1.5rem;
+            }
+        }
+    }
+}
+
+.post__react {
+    @include flexbox (flex, row, center, center, 5px);
+    @include width-height(90px, 40px);
+    // padding: 0.7rem 0.9rem;
+
+    border: none;
+    border-radius: 50px;
+
+    background: none;
+    background-color: var(--gray100);
+
+    color: var(--gray600);
+    font-size: $font-size-sm;
+
+    cursor: pointer;
+    transition: background-color .2s linear, color .2s linear, width .4s ease;
+
+    &.post--like:hover {
+        background-color: var(--rose50);
+        color: var(--rose500);
+        transition: transform .3s ease;
+
+        &:active {
+            i {
+                transform: scale(1.1);
+            }
+
+        }
+    }
+    &.post--share:hover {
+        background-color: var(--green50);
+        color: var(--green500);
+    }
+    &.post--comment:hover,
+    &.post--saved:hover {
+        background-color: var(--blue50);
+        color: var(--blue500);
+    }
+
+    &.post--saved:hover {
+        font-size: $font-size-base;
+    }
+}
+
+.post__signet {
+    font-size: $font-size-base !important;
+    color: var(--gray500);
+    transition: transform .45s ease, color .2s ease;
+
+    &:hover {
+        color: var(--blue500);
+    }
+
+    &:active {
+        color: var(--blue600);
+        transform: scale(1.2) rotate(20deg);
+    }
+}

@@ -1,0 +1,105 @@
+/*------------------------------*\
+        Animations
+\*------------------------------*/
+@keyframes topDown {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes topDown2 {
+    from {
+        transform: translateY(-20px) translateX(-50%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0) translateX(-50%);
+        opacity: 1;
+    }
+}
+
+
+@keyframes opacity {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes righTotLeft {
+    from {
+        transform: translateX(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes rightToLeft2 {
+    from {
+        left: 2rem;
+        opacity: 0;
+    }
+    to {
+        left: 0;
+        opacity: 1;
+    }
+}
+
+@keyframes downUp {
+    from {
+        display: none;
+        bottom: -20px;
+        opacity: 0;
+    }
+    to {
+        display: flex;
+        opacity: 1;
+    }
+}
+
+
+@keyframes animate1 {
+    0% {
+        transform: translateY(0);
+    }
+    25% {
+        transform: translateY(25px);
+    }
+    50% {
+        transform: translateY(50px);
+    }
+    75% {
+        transform: translateY(25px);
+    }
+    1000% {
+        transform: translateY(0);
+    }
+}
+
+
+@keyframes checkAnim {
+    from {
+        transform: scale(0) translate(-50%, -50%);
+    }
+}

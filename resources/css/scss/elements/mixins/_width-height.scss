@@ -1,0 +1,6 @@
+@mixin width-height ($width: auto, $height: auto, $max-width: auto, $max-height: none) {
+    width: $width;
+    height: $height;
+    max-width: $max-width;
+    max-height: $max-height;
+}

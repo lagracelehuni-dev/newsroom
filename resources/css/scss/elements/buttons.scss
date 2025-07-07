@@ -1,0 +1,32 @@
+/*------------------------------*\
+        Buttons 
+\*------------------------------*/
+.btn {
+    @include buttons ($btn-padding-y, $btn-padding-x, $btn-border-radius, $btn-font-size);
+}
+
+.btn-lg {
+    @include buttons ($btn-lg-padding-y, $btn-lg-padding-x, $btn-lg-border-radius, $btn-lg-font-size);
+}
+
+.btn-sm {
+    @include buttons ($btn-sm-padding-y, $btn-sm-padding-x, $btn-sm-border-radius, $btn-sm-font-size);
+}
+
+.btn-primary {
+    @include button-principal($btn-primary-color, $btn-primary-color, $btn-hover-primary-color, $btn-hover-primary-color);
+}
+.btn-secondary {
+    @include button-principal($btn-secondary-color, $btn-secondary-color, $btn-hover-secondary-color, $btn-hover-secondary-color);
+}
+
+.btn-outlined-primary {
+    @include button-outlined($btn-primary-color, transparent, $btn-primary-color, $btn-hover-primary-color, $btn-hover-primary-color, $btn-color);
+}
+.btn-outlined-secondary {
+    @include button-outlined($btn-secondary-color, transparent, $btn-secondary-color, $btn-hover-secondary-color, $btn-hover-secondary-color, $btn-color);
+}
+
+/****** Button link ******/
+.link-primary { @include link($btn-primary-color) }
+.link-secondary { @include link($btn-secondary-color) }

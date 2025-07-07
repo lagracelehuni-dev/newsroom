@@ -1,0 +1,115 @@
+/*------------------------------*\
+    Alerts
+\*------------------------------*/
+
+.alert {
+    position: fixed;
+    top: 2rem;
+    left: 50%;
+    width: 100%;
+    max-width: 500px;
+    // @include flexbox (flex, row, center, center);
+    display: none;
+    grid-template-columns: 40px 1fr 40px;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    box-shadow: 0 0 9px rgba($color: #000000, $alpha: .1);
+    border-radius: .5rem;
+    z-index: $z-index-full-3;
+    transform: translateX(-50%);
+
+    &.alert--visible {
+        display: grid;
+        animation: topDown2 .6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    @each $type in $types {
+        /** Alert danger  **/
+        &.alert--#{$type} {
+            @if ($type == "danger") {
+                @include backdrop-filter(alert-color(danger100), .9, 20px);
+                color: alert-color(danger950);
+            } @else if($type == "success") {
+                @include backdrop-filter(alert-color(success100), .9, 20px);
+                color: alert-color(success950);
+            } @else {
+                @include backdrop-filter(alert-color(warning100), .9, 20px);
+                color: alert-color(warning950);
+            }
+
+            .alert__icon {
+                height: 40px;
+                @include flexbox (flex, row, center, center);
+
+                .alert__icon-icon {
+                    @include flexbox (flex, row, center, center);
+                    width: 40px;
+                    height: 100%;
+                    box-shadow: 0 0 6px rgba($color: #000000, $alpha: .2);
+                    border-radius: .5rem;
+
+                    @if ($type == "danger") {
+                        background-color: alert-color(danger50);
+                        color: alert-color(danger500) !important;
+                    } @else if($type == "success") {
+                        background-color: alert-color(success50);
+                        color: alert-color(success500) !important;
+                    } @else {
+                        background-color: alert-color(warning50);
+                        color: alert-color(warning500) !important;
+                    }
+
+                    font-size: $h4-font-size;
+                    font-weight: $font-weight-semibold;
+                }
+            }
+
+            .alert__content {
+                @include flexbox (flex, column, start, start, .3rem);
+
+                .alert__content-title {
+                    font-size: $font-size-lg;
+                    font-weight: $font-weight-bold;
+                }
+                .alert__content-text {
+                    font-size: $font-size-base;
+                    font-weight: $font-weight-semibold;
+                }
+            }
+
+            .alert__close {
+                @include flexbox (flex, row, center, center);
+                height: 40px;
+
+                .alert__close-btn {
+                    @include flexbox (flex, row, center, center);
+                    width: 30px;
+                    height: 30px;
+                    box-shadow: 0 0 6px rgba($color: #000000, $alpha: .2);
+                    border-radius: 50%;
+                    font-size: $font-size-lg;
+                    font-weight: $font-weight-semibold;
+                    transition: background-color .3s ease;
+
+                    &:hover {
+                        @if ($type == "danger") {
+                            background-color: alert-color(danger50);
+                        } @else if($type == "success") {
+                            background-color: alert-color(success50);
+                        } @else {
+                            background-color: alert-color(warning50);
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+.alert__link {
+    text-decoration: underline !important;
+}
+

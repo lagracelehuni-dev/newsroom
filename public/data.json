@@ -1,0 +1,39 @@
+{
+    "articles": [
+      {
+        "id": 1,
+        "title": "LaGrace Lehuni",
+        "category": "Art & Design"
+      },
+      {
+        "id": 2,
+        "title": "Leo Messi",
+        "category": "Sport"
+      },
+      {
+        "id": 3,
+        "title": "Nouvelle ère de la cybersécurité",
+        "category": "Cyber sécurité"
+      }
+    ],
+    "authors": [
+      {
+        "id": 1,
+        "name": "LaGrace Lehuni",
+        "username": "@lagracelehuni",
+        "avatar": "assets/img/profil/lagracelehuni.jpg"
+      },
+      {
+        "id": 2,
+        "name": "Junior Kabasele",
+        "username": "@juniorkabasele",
+        "avatar": "assets/img/profil/junior.jpg"
+      },
+      {
+        "id": 3,
+        "name": "Angela Yukkio",
+        "username": "@angelayukkio",
+        "avatar": "assets/img/profil/angela.jpg"
+      }
+    ]
+  }

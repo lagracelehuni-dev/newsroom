@@ -1,0 +1,27 @@
+/*------------------------------*\
+    Article responses
+\*------------------------------*/
+.reply {
+    @include width-height (100%, 100%);
+}
+.reply__reply-container {
+    width: 100%;
+    @include flexbox (flex, column, start, start);
+}
+
+$x: 696px;
+
+// .reply__reply-left {
+//     width: calc(($x * 10) / 100);
+//     height: max-content;
+//     border-left: 1px solid var(--gray200);
+//     background-color: var(--gray200);
+// }
+
+.reply__reply-list {
+    width: 100%;
+    @include flexbox (flex, column, start, start, .5rem);
+    padding-top: .5rem;
+    padding-left: .5rem;
+    background-color: var(--gray50);
+}

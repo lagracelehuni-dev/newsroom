@@ -1,0 +1,8 @@
+@mixin positions($position: relative, $top: none, $right: none, $bottom: none, $left: none, $z-index: 1) {
+    position: $position;
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+    z-index: $z-index;
+}

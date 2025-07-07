@@ -1,0 +1,8 @@
+@mixin backdrop-filter($rgba-color, $rgba-alpha, $blur-value) {
+    // Fallback pour navigateurs ne supportant pas backdrop-filter
+    background-color: rgba($color: $rgba-color, $alpha: $rgba-alpha);
+    // Effet de flou (non supporté sur IE et certains mobiles)
+    -webkit-backdrop-filter: blur($blur-value);
+    backdrop-filter: blur($blur-value);
+    // Note : Pas de support sur IE et certains navigateurs mobiles
+}

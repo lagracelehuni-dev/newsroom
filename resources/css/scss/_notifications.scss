@@ -1,0 +1,123 @@
+.navbar__link-notif {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    @include flexbox (flex, row, center, center);
+    border: none;
+    border-radius: 50%;
+    color: var(--gray600);
+    font-size: $h4-font-size;
+    transition: background-color ease .3s, color ease .3s;
+
+    &:hover {
+        background-color: var(--gray50);
+        color: var(--black);
+    }
+
+    &.is-active {
+        color: var(--blue900);
+    }
+}
+.navbar__link-notif-count {
+    position: absolute;
+    @include width-height (20px, 20px, 40px, 40px);
+    @include flexbox (flex, row, center, center);
+    background-color: var(--blue600);
+    box-shadow: 0 0 6px rgba($color: #000000, $alpha: .1);
+    border-radius: 50%;
+    color: white;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-bold;
+
+    &.position--type1 {
+        top: 0;
+        right: 0;
+    }
+    &.position--type2 {
+        top: 7px;
+        left: 15%;
+    }
+}
+
+.notif--relative {
+    position: relative;
+
+    i {
+        position: relative;
+    }
+}
+
+.notification__body {
+    @include width-height (100%, 100%);
+
+    .notification__content-item {
+        @include width-height (100%);
+        @include flexbox (flex, column, start, start, .1rem);
+        // padding: 0 1rem;
+
+        .notification__item {
+            @include width-height (100%);
+            @include flexbox (flex, row, start, space-between, 1rem);
+            padding: 1rem;
+            border-bottom: 2px solid var(--gray100);
+            border-radius: .5rem;
+
+            &.notification__item--unread {
+                background-color: var(--blue50);
+                border-bottom: 2px solid var(--blue100);
+            }
+
+            .notification__icon {
+                @include width-height (80px, 80px);
+                @include flexbox (flex, row, center, center);
+                border-radius: .5rem;
+                overflow: hidden;
+
+                .notification__avatar {
+                    @include width-height (100%);
+                    object-fit: contain;
+                }
+            }
+
+            .notification__content {
+                @include width-height (500px);
+                @include flexbox (flex, column, start, start, .1rem);
+                text-align: start;
+
+                .notification__message {
+                    font-size: $font-size-base;
+                }
+
+                .notification__time {
+                    color: var(--gray500);
+                    font-size: $font-size-sm;
+                    font-weight: $font-weight-bold;
+                }
+            }
+
+            .notification__actions {
+                @include width-height (80px, 80px);
+                @include flexbox (flex, row, center, end, .1rem);
+
+                .notification__mark-read-btn,
+                .notification__delete-btn {
+                    @include width-height (30px, 30px);
+                    @include flexbox (flex, row, center, center);
+                    border-radius: .5rem;
+                    font-size: $font-size-sm;
+                    background-color: var(--blue100);
+                    &:hover {
+                        background-color: var(--blue200);
+                    }
+                }
+            }
+        }
+    }
+
+
+}
+
+.notification__empty {
+    margin-top: 3rem;
+    text-align: center;
+}

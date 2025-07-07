@@ -1,0 +1,125 @@
+.edit-profil__body {
+    @include width-height (100%);
+    @include flexbox (flex, column, start, start);
+
+    .edit-profil__avatar {
+        @include width-height (100%);
+        @include flexbox (flex, row, end, start, .75rem);
+        padding: 1rem 1.5rem;
+        border-bottom: 2px solid var(--gray100);
+
+        .avatar__import {
+            position: relative;
+            @include width-height (200px, 200px);
+            border-radius: 1rem;
+            overflow: hidden;
+
+            .avatar-import__preview {
+                @include width-height (100%, 100%);
+                @include flexbox (flex, row, center, center);
+
+                img {
+                    @include width-height (100%);
+                    object-fit: cover;
+                }
+            }
+
+            .avatar-import__browse {
+                @include width-height (100%, 100%);
+                @include flexbox (flex, row, center, center);
+                position: absolute;
+                top: 0;
+                left: 0;
+                background-color: rgba(0, 0, 0, 0.4);
+                color: var(--gray100);
+                font-size: $h4-font-size;
+                cursor: pointer;
+                transition: background-color .2s ease;
+
+                span {
+                    @include width-height (50px, 50px);
+                    @include flexbox (flex, row, center, center);
+                    border-radius: 50%;
+                    background-color: rgba(0, 0, 0, 0.6);
+                    transition: transform .2s ease;
+                }
+
+                &:hover {
+                    background-color: rgba(0, 0, 0, 0.5);
+                }
+
+                &:active {
+                    span {
+                        transform: scale(.95);
+                    }
+                }
+            }
+        }
+    }
+
+    .edit-profil__others-infos {
+        @include width-height (100%);
+        @include flexbox (flex, column, start, start, .2rem);
+        padding: 1rem 1.5rem;
+
+        .edit-profil__input {
+            @include width-height (100%);
+            @include flexbox (flex, column, start, start);
+
+            label {
+                font-size: $font-size-sm;
+                color: var(--gray500);
+                margin-bottom: .25rem
+            }
+
+            .edit-profil__input-field {
+                @include width-height (100%, 40px);
+                padding: .5rem .75rem;
+                margin-bottom: .5rem;
+                border: 1px solid var(--gray100);
+                border-bottom: 2px solid var(--gray200);
+                border-radius: .35rem;
+                background-color: var(--gray50);
+                font-size: $font-size-base;
+
+                &:focus {
+                    outline: 2px solid var(--blue500);
+                }
+            }
+
+            textarea.edit-profil__input-field {
+                @include width-height (100%, 100px);
+                resize: none;
+            }
+
+            small {
+                @include width-height (100%);
+                @include flexbox (flex, row, start, start);
+                margin-bottom: .5rem;
+                color: var(--gray500);
+                font-weight: $font-weight-semibold;
+                // font-size: $font-size-xs;
+            }
+        }
+
+        .edit-profil__reset-pswd {
+            color: var(--blue500);
+            font-size: $font-size-base;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .edit-profil__actions {
+        @include width-height (100%);
+        padding: 1rem 1.5rem;
+        padding-top: 0;
+    }
+}
+
+.edit-profil__error {
+    font-size: $font-size-base;
+    color: var(--red600);
+}

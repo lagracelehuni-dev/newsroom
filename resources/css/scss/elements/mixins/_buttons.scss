@@ -1,0 +1,83 @@
+@mixin buttons (
+    $padding-y,
+    $padding-x,
+    $border-radius,
+    $font-size,
+    $rounded: $btn-rounded,
+    $border: $btn-border,
+    $text-align: $btn-text-align,
+    $line-height: $btn-line-height,
+    $font-weight: $btn-font-weight
+) {
+    padding: $padding-y $padding-x;
+
+    border-radius: $border-radius;
+    border: $border;
+
+    font-size: $font-size;
+    text-align: $text-align;
+    line-height: $line-height;
+    font-weight: $font-weight;
+    font-family: $font-family;
+
+    cursor: $btn-cursor;
+
+    &.btn-rounded {
+        border-radius: $btn-rounded;
+    }
+}
+
+@mixin button-principal (
+    $border-color,
+    $background-color,
+    $hover-border-color,
+    $hover-background-color,
+    $color: $btn-color,
+    $hover-color: $btn-color
+) {
+    border-color: $border-color;
+    background-color: $background-color;
+    color: $color;
+    font-family: $font-family;
+
+    transition: all .4s ease;
+
+    &:hover {
+        border-color: $hover-border-color;
+        background-color: $hover-background-color;
+        color: $hover-color;
+    }
+}
+
+@mixin button-outlined (
+    $border-color,
+    $background-color,
+    $color,
+    $hover-border-color,
+    $hover-background-color,
+    $hover-color
+) {
+    border-color: $border-color;
+    background-color: $background-color;
+    color: $color;
+
+    transition: all .4s ease;
+
+    &:hover {
+        border-color: $hover-border-color;
+        background-color: $hover-background-color;
+        color: $hover-color;
+    }
+}
+
+@mixin link ( $hover-color ) 
+{
+    color: var(--black);
+    text-decoration: underline;
+
+    transition: all .4s ease;
+
+    &:hover {
+        color: $hover-color;
+    }
+}

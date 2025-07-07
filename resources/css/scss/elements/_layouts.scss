@@ -1,0 +1,350 @@
+/*------------------------------*\
+        Layouts
+\*------------------------------*/
+.welcomepage {
+        @include width-height (100%, 100vh);
+        @include flexbox (flex, column, center, center, 2.5rem);
+}
+
+.logo-bloc {
+        width: 50px;
+        animation: zoomIn 1s ease;
+
+        img { width: 100%; }
+}
+
+.animate {
+    @include width-height (100%, 100vh);
+    @include flexbox (flex, row, center, center);
+}
+
+.obj-animate {
+    @include width-height (250px, 250px);
+    display: block;
+    border-radius: 50%;
+    background-color: var(--blue600);
+
+    &.animate--1 {
+            @include positions (absolute, $top: 50px, $right: 100px, $z-index : -3);
+            background-color: var(--blue600);
+            animation: animate1 2s linear infinite;
+    }
+    &.animate--2 {
+            background-color: var(--blue600);
+            animation: animate1 2s linear infinite 1s;
+    }
+    &.animate--3 {
+            @include positions (absolute, $bottom: 50px, $left: 100px, $z-index : -3);
+            background-color: var(--blue600);
+            animation: animate1 2s linear infinite 1s;
+    }
+}
+
+.bg-overlay {
+    @include positions (absolute, $z-index : -2);
+    @include width-height (100%, 100%);
+    @include backdrop-filter(others-color(gray200), .5, 50px);
+}
+
+.loader-17 {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: inline-block;
+        border-top: 3px solid var(--blue600);
+        border-right: 3px solid transparent;
+        -webkit-animation: rotation .6s linear infinite;
+                animation: rotation .6s linear infinite;
+}
+
+.loader-40 {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        display: inline-block;
+        position: relative;
+        background: var(--blue950);
+        box-shadow: -24px 0 var(--blue950), 24px 0 var(--blue950);
+        -webkit-animation: shadowPulse 2s linear infinite;
+                animation: shadowPulse 2s linear infinite;
+}
+
+/* keyFrames */
+@-webkit-keyframes inDownTop {
+        from {
+            top: 70px;
+            opacity: 0;
+        }
+
+        to {
+            top: -70px;
+            opacity: 1;
+        }
+}
+@keyframes inDownTop {
+        from {
+            top: 70px;
+            opacity: 0;
+        }
+
+        to {
+            top: -70px;
+            opacity: 1;
+        }
+}
+
+
+@-webkit-keyframes rotation {
+        0% {
+                transform: rotate(0deg);
+        }
+        100% {
+                transform: rotate(360deg);
+        }
+        }
+@keyframes rotation {
+        0% {
+                transform: rotate(0deg);
+        }
+        100% {
+                transform: rotate(360deg);
+        }
+}
+
+@-webkit-keyframes shadowPulse {
+        33% {
+                background: var(--blue950);
+                box-shadow: -24px 0 var(--blue600), 24px 0 var(--blue950);
+        }
+        66% {
+                background: var(--blue600);
+                box-shadow: -24px 0 var(--blue950), 24px 0 var(--blue950);
+        }
+        100% {
+                background: var(--blue950);
+                box-shadow: -24px 0 var(--blue950), 24px 0 var(--blue600);
+        }
+}
+@keyframes shadowPulse {
+        33% {
+                background: var(--blue950);
+                box-shadow: -24px 0 var(--blue600), 24px 0 var(--blue950);
+        }
+        66% {
+                background: var(--blue600);
+                box-shadow: -24px 0 var(--blue950), 24px 0 var(--blue950);
+        }
+        100% {
+                background: var(--blue950);
+                box-shadow: -24px 0 var(--blue950), 24px 0 var(--blue600);
+        }
+}
+
+.lightbox-trigger {
+        cursor: pointer;
+}
+
+.lightbox {
+        position: fixed;
+        @include flexbox(none, column, center, start, 2.5rem);
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        padding: 1.5rem;
+        background-color: rgba($color: system-colors(black), $alpha: .9);
+        z-index: $z-index-full !important;
+        overflow-y: auto;
+
+        .lightbox__content {
+                // padding: 1.5rem;
+                // max-height: 500px;
+                max-width: 800px;
+                @include flexbox(flex, column, start, start);
+                position: relative;
+                z-index: $z-index-full !important;
+
+
+                animation: zoomIn .2s linear;
+
+                .lightbox__image { width: 100%; border-radius: .5rem; }
+
+                .lightbox__close {
+                        position: absolute;
+                        top: -15px;
+                        right: -15px;
+                        width: 30px;
+                        height: 30px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        border: 2px solid var(--white);
+                        border-radius: 50px;
+                        background-color: var(--black);
+
+                        color: var(--white);
+                        font-size: $font-size-lg;
+                        cursor: pointer;
+                        transition: transform .1s;
+
+                        &:hover {
+                                transform: scale(1.05);
+                        }
+                }
+        }
+}
+
+.checkbox {
+        @include flexbox (flex, row, center, start, .5rem);
+
+        .checkbox__bloc {
+                &[type="checkbox"] {
+                        position: relative;
+                        width: 15px;
+                        height: 15px;
+                        outline: 1px solid var(--gray200);
+                        border-radius: .25rem;
+                        background-color: var(--gray100);
+                        appearance: none;
+                        cursor: pointer;
+                        transition: background-color .2s ease;
+
+                        &::before {
+                                font-family: 'remixicon';
+                                content: '';
+                                position: absolute;
+                                top: 50%;
+                                left: 50%;
+                                font-size: $font-size-xs;
+                                font-weight: $font-weight-semibold;
+                                transform: scale(1) translate(-50%, -50%);
+                        }
+
+                        &:checked {
+                                outline-color: var(--blue500);
+                                background-color: var(--blue500);
+
+                                &:hover {
+                                        background-color: var(--blue600);
+                                }
+
+                                &::before {
+                                        content: '\eb7b'; /* Code hexadécimal de l'îcone "check" */
+                                        color: var(--white);
+                                        animation: checkAnim .2s ease;
+                                }
+                        }
+
+                        &:hover {
+                                background-color: var(--gray200);
+                        }
+                }
+        }
+
+        .checkbox__text {
+                font-size: $font-size-base;
+                user-select: none;
+        }
+}
+
+.action-react,
+.popup-trigger {
+        cursor: pointer !important;
+}
+
+.bloc__show-msg {
+        @include flexbox (flex, row, center, center);
+        position: fixed;
+        z-index: $z-index-full-3;
+        width: 100%;
+        margin-top: 1rem;
+
+        .comment-message {
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
+
+                width: fit-content;
+                max-width: 500px;
+                font-size: $font-size-sm;
+                font-weight: $font-weight-semibold;
+                text-align: center;
+                padding: .5rem 1rem;
+                border-radius: .25rem;
+                -webkit-animation: topDown2 .45s ease-in-out;
+                animation: topDown2 .45s ease-in-out;
+                transition: color .2s ease;
+
+                &.success {
+                    background-color: var(--green950);
+                    color: var(--green300);
+                }
+                &.info {
+                    background-color: var(--blue600);
+                    color: var(--white);
+                }
+                &.error {
+                    background-color: var(--red950);
+                    color: var(--red300);
+                }
+        }
+}
+
+.bloc__confirm-action {
+    @include flexbox (flex, row, center, center);
+    position: fixed;
+    z-index: $z-index-full-3;
+    width: 100%;
+    margin-top: 1rem;
+
+    .confirm-action {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        @include flexbox (flex, column, start, center, .25rem);
+
+        width: 100%;
+        max-width: 500px;
+        padding: 2rem 2rem;
+        border: 1px solid var(--gray100);
+        border-radius: .5rem;
+        @include backdrop-filter(system-colors(white), .9, 20px);
+        box-shadow: 0 0 6px rgba($color: #000000, $alpha: .1);
+        z-index: $z-index-full-3;
+        -webkit-animation: topDown2 .45s ease-in-out;
+                animation: topDown2 .45s ease-in-out;
+
+        .text__confirm-action {
+            font-size: $font-size-base;
+        }
+
+        .stack__confirm-action {
+            @include flexbox (flex, row, center, start, .25rem);
+
+            .btn {
+                &__delete {
+                    border-color: var(--red600);
+                    background-color: var(--red600);
+                    color: var(--red100);
+
+                    &:hover {
+                        background-color: var(--red500);
+                    }
+                }
+
+                &__annuler {
+                    border-color: var(--gray200);
+                    background-color: var(--gray100);
+                    color: var(--gray500);
+
+                    &:hover {
+                        background-color: var(--gray200);
+                    }
+                }
+            }
+        }
+    }
+}

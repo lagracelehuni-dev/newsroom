@@ -1,0 +1,73 @@
+// Fichier utilitaire pour compatibilité navigateurs sur SCSS custom
+// À importer dans app.css ou styles.scss
+
+// Flexbox
+@mixin flexbox($display: flex, $direction: row, $align: stretch, $justify: flex-start, $gap: 0) {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: $display;
+  flex-direction: $direction;
+  align-items: $align;
+  justify-content: $justify;
+  gap: $gap;
+  
+  // Fallback gap pour flexbox (compatibilité mobile)
+  @if $gap != 0 {
+    > *:not(:last-child) {
+      @if $direction == row {
+        margin-right: $gap;
+      } @else if $direction == column {
+        margin-bottom: $gap;
+      }
+    }
+  }
+}
+
+// Grid
+@mixin gridbox($display: grid, $rows: null, $columns: null) {
+  display: -ms-grid;
+  display: $display;
+  @if $rows != null {
+    -ms-grid-rows: $rows;
+    grid-template-rows: $rows;
+  }
+  @if $columns != null {
+    -ms-grid-columns: $columns;
+    grid-template-columns: $columns;
+  }
+  // Attention : le support de grid sur IE/Edge Legacy est limité
+}
+
+// Border radius
+@mixin border-radius($radius: 8px) {
+  -webkit-border-radius: $radius;
+  border-radius: $radius;
+}
+
+// Box shadow
+@mixin box-shadow($shadow: 0 2px 8px rgba(0,0,0,0.1)) {
+  -webkit-box-shadow: $shadow;
+  box-shadow: $shadow;
+}
+
+// User select
+@mixin user-select($value: none) {
+  -webkit-user-select: $value;
+  -moz-user-select: $value;
+  -ms-user-select: $value;
+  user-select: $value;
+}
+
+// Transition
+@mixin transition($value: all .3s) {
+  -webkit-transition: $value;
+  -moz-transition: $value;
+  -o-transition: $value;
+  transition: $value;
+}
+
+// Animation
+@mixin animation($value) {
+  -webkit-animation: $value;
+  animation: $value;
+}
