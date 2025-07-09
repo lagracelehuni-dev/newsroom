@@ -120,7 +120,7 @@
                         @enderror
                         @if(isset($post) && $post->cover_image)
                             <div class="compose__import-preview-box">
-                                <img src="{{ asset('storage/' . $post->cover_image) }}" alt="Image actuelle" class="compose__import-preview-img">
+                                <img src="{{ asset($post->cover_image) }}" alt="Image actuelle" class="compose__import-preview-img">
                                 <p class="compose__import-preview-label">Image actuelle</p>
                             </div>
                         @endif

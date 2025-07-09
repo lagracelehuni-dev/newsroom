@@ -350,7 +350,17 @@
     }
 }
 
+.empty-category {
+    @include width-height (100%);
+    @include flexbox (flex, row, center, center);
+    padding: 2rem 1rem;
 
+    .empty-category__text {
+        color: var(--gray500);
+        font-size: $font-size-lg;
+        font-weight: $font-weight-semibold;
+    }
+}
 
 /* ============================================================ *\
 <<=============== END Homepage ===================>>

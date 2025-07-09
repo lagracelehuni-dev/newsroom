@@ -348,3 +348,70 @@
         }
     }
 }
+
+// Modals
+.bloc__modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    @include width-height (100%, 100vh);
+    // @include flexbox (flex, column, center, center);
+    background-color: rgba($color: system-colors(black), $alpha: .8);
+    overflow-y: auto;
+    z-index: $z-index-full-2;
+
+    &.bloc--modal-logout { display: none; }
+    &.bloc--modal-delete-account { display: none; }
+
+    .bloc__modal-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        @include width-height (100%, auto, 500px);
+        @include flexbox (flex, column, start, center);
+        padding: 2rem 2rem;
+        transform: translate(-50%, -50%);
+        border-radius: .5rem;
+        background-color: var(--white);
+        -webkit-animation: zoomInModal .35s ease-in-out;
+                animation: zoomInModal .35s ease-in-out;
+
+        .bloc__modal-title {
+            font-size: $font-size-lg;
+            font-weight: $font-weight-semibold;
+        }
+
+        .bloc__modal-text {
+            margin-top: .5rem;
+            font-size: $font-size-base;
+            font-weight: $font-weight-normal;
+            color: var(--black);
+        }
+
+        .bloc__modal-actions {
+            margin-top: 2rem;
+        }
+    }
+}
+
+@-webkit-keyframes zoomInModal {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes zoomInModal {
+    from {
+        transform: translate(-50%, -50%) scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+}

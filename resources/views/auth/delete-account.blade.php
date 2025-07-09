@@ -35,7 +35,7 @@
                 Supprimer définitivement
             </button>
             <a href="{{ route('home') }}" class="mb-4 w-full mt-[10px] bg-gray-100 text-center text-gray-500 py-2 px-4 rounded-lg hover:bg-gray-100 transition">
-                Supprimer définitivement
+                Abandonner
             </a>
         </div>
     </form>

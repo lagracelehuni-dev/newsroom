@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ArticleDetailsController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookmarkController;
@@ -108,7 +109,7 @@ Route::name('auth')->controller(AuthController::class)->group(function () {
     Route::post('/login','login');
     Route::get('/signup','getSignup')->name('.signup')->middleware('guest');
     Route::post('/signup','signup');
-    Route::delete('/logout','logout')->name('.logout')->middleware('auth');
+    Route::delete('/logout','logout')->name('.logout')->middleware('NotAuth');
 });
 
 // Gestion des commentaires et réponses
@@ -132,19 +133,19 @@ Route::get('/articles/load-more', [HomeController::class, 'loadMoreArticles'])->
 // Route pour le chargement progressif (load more) des articles
 Route::get('/articles/load-more/{username}', [MasterController::class, 'loadMoreArticles'])->name('articles.loadMore');
 
-Route::middleware('auth')->get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
-Route::middleware('auth')->post('/notifications/mark-as-read/{id}', [NotificationController::class, 'markAsRead'])->name('notifications.markAsRead');
-Route::middleware('auth')->post('/notifications/mark-all-read', [NotificationController::class, 'markAllAsRead'])->name('notifications.markAllAsRead');
-Route::middleware('auth')->delete('/notifications/{id}', [NotificationController::class, 'destroy'])->name('notifications.destroy');
+Route::middleware('NotAuth')->get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
+Route::middleware('NotAuth')->post('/notifications/mark-as-read/{id}', [NotificationController::class, 'markAsRead'])->name('notifications.markAsRead');
+Route::middleware('NotAuth')->post('/notifications/mark-all-read', [NotificationController::class, 'markAllAsRead'])->name('notifications.markAllAsRead');
+Route::middleware('NotAuth')->delete('/notifications/{id}', [NotificationController::class, 'destroy'])->name('notifications.destroy');
 
 // web.php
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['NotAuth'])->group(function () {
     Route::post('/bookmarks/{post}', [BookmarkController::class, 'toggle'])->name('bookmarks.toggle');
     Route::get('/bookmarks', [BookmarkController::class, 'index'])->name('bookmarks.index');
 });
 
 // Pour utilisateurs connectés
-Route::middleware('auth')->group(function () {
+Route::middleware('NotAuth')->group(function () {
     Route::get('/password/reset', [PasswordResetController::class, 'showResetForm'])->name('password.reset');
     Route::post('/password/reset', [PasswordResetController::class, 'updatePassword'])->name('password.update.self');
     // Afficher le formulaire pour demander un code de réinitialisation
@@ -159,8 +160,15 @@ Route::middleware('auth')->group(function () {
 
     // Afficher le formulaire de nouveau mot de passe
     Route::get('/password/reset-form', [ForgotPasswordController::class, 'showNewPasswordForm'])->name('password.reset.form');
+});
 
+Route::get('/account/delete/confirm', [AccountController::class, 'confirmDeletionIntent'])
+    ->middleware(['auth'])
+    ->name('account.delete.confirm');
 
+Route::get('/account/delete', [AccountController::class, 'showDeleteForm'])->middleware(['auth', 'NotAuth' ,'can.delete.account'])->name('account.delete');
+Route::middleware('NotAuth')->group(function () {
+    Route::delete('/account/delete', [AccountController::class, 'destroy'])->name('account.destroy');
 });
 
 

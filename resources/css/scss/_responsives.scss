@@ -2,7 +2,8 @@
 @media (min-width: 320px) and (max-width: 576px) {
     .alert,
     .comment-message,
-    .confirm-action {
+    .confirm-action,
+    .bloc__modal-content {
         width: 90% !important;
     }
 

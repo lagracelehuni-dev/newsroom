@@ -103,13 +103,9 @@
                     <div class="pannel-body">
                         <ul class="pannel-body__menu">
                             {{-- <li><a href="{{ route('auth.login') }}" class="pannel-body__item">Ajouter un compte existant</a></li> --}}
-                            <li><a href="#" class="pannel-body__item">Supprimer le compte</a></li>
+                            <li><button type="button" class="pannel-body__item trigger-open-sd">Supprimer le compte</button></li>
                             <li>
-                                <form action="{{ route('auth.logout') }}" method="post">
-                                    @method("delete")
-                                    @csrf
-                                    <button class="pannel-body__item pannel-body--last">Se déconnecter de {{ "@" . Auth::user()->username }}</button>
-                                </form>
+                                <button type="button" class="pannel-body__item pannel-body--last trigger-open">Se déconnecter de {{ "@" . Auth::user()->username }}</button>
                             </li>
                         </ul>
                     </div>

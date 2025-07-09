@@ -15,6 +15,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->append(\App\Http\Middleware\PreventBackHistory::class);
         $middleware->alias([
             'NotAuth' => \App\Http\Middleware\RedirectIfNotAuthenticatedHome::class,
+            'can.delete.account' => \App\Http\Middleware\CanDeleteAccount::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

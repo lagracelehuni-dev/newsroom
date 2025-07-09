@@ -32,6 +32,33 @@
             </x-alert>
         @endif
 
+        {{-- Modal de deconnexion --}}
+        <div class="bloc__modal bloc--modal-logout">
+            <div class="bloc__modal-content">
+                <h2 class="bloc__modal-title">Déconnexion</h2>
+                <p class="bloc__modal-text">Êtes-vous sûr de vouloir vous déconnecter ?</p>
+                <div class="bloc__modal-actions hstack">
+                    <button class="btn btn-outlined-secondary trigger-close">Annuler</button>
+                    <form action="{{ route('auth.logout') }}" method="POST">
+                        @csrf
+                        @method("delete")
+                        <button class="btn btn-primary">Déconnexion</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        {{-- Modal de delete account --}}
+        <div class="bloc__modal bloc--modal-delete-account">
+            <div class="bloc__modal-content">
+                <h2 class="bloc__modal-title">Suppression de compte</h2>
+                <p class="bloc__modal-text">Êtes-vous sûr de vouloir supprimer votre compte ?</p>
+                <div class="bloc__modal-actions hstack">
+                    <button class="btn btn-outlined-secondary trigger-close">Annuler</button>
+                    <a href="{{ route('account.delete.confirm') }}" class="btn btn-primary">Continuer</a>
+                </div>
+            </div>
+        </div>
 
         <div class="bloc__confirm-action"></div>
         <div class="bloc__show-msg">
