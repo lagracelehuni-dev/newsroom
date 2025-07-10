@@ -44,6 +44,12 @@ class ForgotPasswordController extends Controller
         // Envoyer le code par email
         Mail::to($user->email)->send(new PasswordResetCodeMail($code));
 
+        // Stocker l’email dans la session pour sécuriser la prochaine étape
+        session([
+            'email' => $user->email,
+        ]);
+
+
         return redirect()->route('password.verifycode.form')
             ->with('email', $user->email)
             ->with('type', 'info')
@@ -101,14 +107,14 @@ class ForgotPasswordController extends Controller
         // Mise à jour du mot de passe
         $user = User::where('email', $request->email)->first();
         $user->password = $request->password;
-        $user->last_password_reset = now();
+        $user->last_password_reset_at = now();
         $user->save();
 
         // Supprimer le code après usage
         DB::table('password_resets')->where('email', $request->email)->delete();
 
         // Connexion automatique (optionnel)
-        // Auth::login($user);
+        Auth::login($user);
 
         return redirect()->route('home')
             ->with('type', 'success')
@@ -143,8 +149,13 @@ class ForgotPasswordController extends Controller
         // Envoyer l’email
         Mail::to($user->email)->send(new \App\Mail\PasswordResetCodeMail($code));
 
+        // Stocker l’email dans la session pour sécuriser la prochaine étape
+        session([
+            'email' => $user->email,
+        ]);
+
         // Nettoyage des données de session temporaires
-        // session()->forget(['user_found', 'user_username', 'user_email', 'user_avatar']);
+        session()->forget(['user_found', 'user_username', 'user_email', 'user_avatar']);
 
         // Redirection vers le formulaire de saisie du code
         return redirect()->route('password.verifycode.form')

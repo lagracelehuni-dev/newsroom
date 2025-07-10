@@ -15,7 +15,7 @@ class EnsureEmailInSession
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!session()->has('email')) {
+        if (!$request->session()->has('email')) {
             return redirect()->route('password.identify')
                 ->with([
                     'type' => 'danger',
