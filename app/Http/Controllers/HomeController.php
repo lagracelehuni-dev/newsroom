@@ -26,6 +26,7 @@ class HomeController extends Controller
         $posts = Post::with(['user', 'category', 'bookmarks'])
             ->orderBy('views_count', 'desc') // Trier par le nombre de vues
             ->latest()
+            ->inRandomOrder()
             ->take(5)
             ->get();
 
