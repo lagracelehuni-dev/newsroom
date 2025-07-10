@@ -9,6 +9,9 @@
         } else if ($type == 'danger') {
             $icon = 'error-warning';
             $title = 'Erreur';
+        } else if ($type == 'info') {
+            $icon = 'information';
+            $title = 'Erreur';
         } else {
             $icon = 'alert';
             $title = 'Attention';

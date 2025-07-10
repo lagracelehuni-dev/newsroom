@@ -9,6 +9,7 @@ use App\Http\Controllers\MasterController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\EditProfilController;
 use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\IdentifyAccountController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PasswordResetController;
@@ -144,23 +145,32 @@ Route::middleware(['NotAuth'])->group(function () {
     Route::get('/bookmarks', [BookmarkController::class, 'index'])->name('bookmarks.index');
 });
 
+// Étape 1 : Affichage & recherche du compte
+Route::get('/forgot-password/identify', [IdentifyAccountController::class, 'showForm'])->name('password.identify');
+Route::post('/forgot-password/search', [IdentifyAccountController::class, 'search'])->name('password.search-account');
+
+// Étape 2 : Envoi du code (protégé)
+Route::post('/forgot-password/send-code',
+    [ForgotPasswordController::class, 'sendResetCodeAfterIdentification']
+)->middleware(['identified', 'throttle.reset'])->name('password.send-code');
+
+// Étape 3 : Formulaire code + nouveau mot de passe
+Route::get('/verify-reset-code', fn () => view('auth.password.verify-code'))
+    ->name('password.verifycode.form');
+
+// Étape 4 : Soumission du nouveau mot de passe
+Route::post('/verify-reset-code', [ForgotPasswordController::class, 'reset'])->name('password.verifycode');
+
 // Pour utilisateurs connectés
 Route::middleware('NotAuth')->group(function () {
     Route::get('/password/reset', [PasswordResetController::class, 'showResetForm'])->name('password.reset');
     Route::post('/password/reset', [PasswordResetController::class, 'updatePassword'])->name('password.update.self');
     // Afficher le formulaire pour demander un code de réinitialisation
     Route::get('/forgot-password', [PasswordResetController::class, 'showForgotPasswordForm'])->name('password.request');
-
-    // Envoyer le code de réinitialisation
-    Route::post('/forgot-password/send-code', [PasswordResetController::class, 'sendCode'])->name('password.send-code');
-    // Étape suivante (saisie du code reçu par mail)
-    Route::get('/verify-reset-code', [PasswordResetController::class, 'showVerifyCodeForm'])->name('password.verify-code.form');
-    // Vérifier le code entré
-    Route::post('/password/verify-code', [ForgotPasswordController::class, 'verifyCode'])->name('password.verify-code');
-
-    // Afficher le formulaire de nouveau mot de passe
-    Route::get('/password/reset-form', [ForgotPasswordController::class, 'showNewPasswordForm'])->name('password.reset.form');
 });
+
+Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetCode'])->name('password.email');
+
 
 Route::get('/account/delete/confirm', [AccountController::class, 'confirmDeletionIntent'])
     ->middleware(['auth'])

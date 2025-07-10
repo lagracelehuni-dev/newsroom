@@ -16,6 +16,9 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'NotAuth' => \App\Http\Middleware\RedirectIfNotAuthenticatedHome::class,
             'can.delete.account' => \App\Http\Middleware\CanDeleteAccount::class,
+            'identified' => \App\Http\Middleware\EnsureEmailIdentified::class,
+            'email.session' => \App\Http\Middleware\EnsureEmailInSession::class,
+            'throttle.reset' => \App\Http\Middleware\ThrottleResetRequests::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

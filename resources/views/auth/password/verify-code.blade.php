@@ -1,34 +1,65 @@
 @extends('master-pass')
 
 @section('mainPass')
-<section class="section section--reset">
-    <div class="reset__container">
-        <div class="reset__card">
-            <h2 class="reset__title">Vérification du code</h2>
-            <p class="reset__description">Entrez le code que vous avez reçu par email.</p>
+<div class="min-h-screen bg-gray-100 flex items-center justify-center px-4 py-8">
+    <div class="w-full max-w-md bg-white rounded-2xl shadow-lg p-8">
+        <h2 class="text-xl font-bold text-gray-800 mb-6 text-center">Réinitialiser le mot de passe</h2>
 
-            @if(session('error'))
-                <div class="alert alert--danger">{{ session('error') }}</div>
-            @endif
+        <!-- Formulaire -->
+        <form method="POST" action="{{ route('password.verifycode') }}" class="space-y-5">
+            @csrf
 
-            @if(session('success'))
-                <div class="alert alert--success">{{ session('success') }}</div>
-            @endif
+            <!-- Email (masqué ou visible selon ton choix) -->
+            <input type="hidden" name="email" value="{{ $email ?? old('email') }}">
 
-            <form action="{{ route('password.verify-code') }}" method="POST" class="reset__form">
-                @csrf
-                <input type="hidden" name="email" value="{{ old('email', request()->get('email')) }}">
+            <!-- Code reçu par email -->
+            <div>
+                <label for="code" class="block text-sm font-medium text-gray-700">Code de vérification</label>
+                <input id="code" name="code" type="text" required
+                       class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
+                       placeholder="Ex: 483261">
+                <!-- Affichage des erreurs -->
+                @error('code')
+                    <p class="mb-4 text-sm text-red-600"><i class="ri-error-warning-fill"></i> {{ $message }}</p>
+                @enderror
+            </div>
 
-                <div class="form__group">
-                    <label for="code" class="form__label">Code de vérification</label>
-                    <input type="text" name="code" id="code" class="form__input" placeholder="Ex: 839241" required autofocus>
-                </div>
+            <!-- Nouveau mot de passe -->
+            <div>
+                <label for="password" class="block text-sm font-medium text-gray-700">Nouveau mot de passe</label>
+                <input id="password" name="password" type="password" required
+                       class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                <!-- Affichage des erreurs -->
+                @error('password')
+                    <p class="mb-4 text-sm text-red-600"><i class="ri-error-warning-fill"></i> {{ $message }}</p>
+                @enderror
+            </div>
 
-                <button type="submit" class="btn btn--primary">Vérifier le code</button>
-            </form>
+            <!-- Confirmation -->
+            <div>
+                <label for="password_confirmation" class="block text-sm font-medium text-gray-700">Confirmer le mot de passe</label>
+                <input id="password_confirmation" name="password_confirmation" type="password" required
+                       class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                <!-- Affichage des erreurs -->
+                @error('password_confirmation')
+                    <p class="mb-4 text-sm text-red-600"><i class="ri-error-warning-fill"></i> {{ $message }}</p>
+                @enderror
+            </div>
 
-            <a href="{{ route('password.request') }}" class="reset__link">← Renvoyer un nouveau code</a>
+            <!-- Bouton -->
+            <div class="pt-4">
+                <button type="submit"
+                        class="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition duration-200 font-semibold">
+                    Réinitialiser le mot de passe
+                </button>
+            </div>
+        </form>
+
+        <div class="text-center mt-4">
+            <a href="{{ route('home') }}" class="text-sm text-blue-600 hover:underline">
+                Abandonner l'action
+            </a>
         </div>
     </div>
-</section>
+</div>
 @endsection

@@ -42,7 +42,7 @@ $others-color: (
     red950: #450a0a,
 );
 
-$types : danger, success, warning;
+$types : danger, success, info,warning;
 
 $alert-color: (
     success50: #f0fdf4,
@@ -55,6 +55,11 @@ $alert-color: (
     danger500: #ef4444,
     danger600: #dc2626,
     danger950: #450a0a,
+    info50: #eff6ff,
+    info100: #dbeafe,
+    info500: #3b82f6,
+    info600: #2563eb,
+    info950: #172554,
     warning50: #fefce8,
     warning100: #fef9c3,
     warning500: #eab308,

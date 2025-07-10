@@ -50,9 +50,9 @@
                         {{-- <li><a href="{{ route('auth.login') }}" class="pannel-body__item">Ajouter un compte existant</a></li> --}}
                         <ul class="pannel-body__menu">
                             {{-- <li><a href="{{ route('auth.login') }}" class="pannel-body__item">Ajouter un compte existant</a></li> --}}
-                            <li><button type="button" class="pannel-body__item trigger-open-sd">Supprimer le compte</button></li>
+                            <li><button type="button" class="pannel-body__item trigger-open-sd trigger-hidde">Supprimer le compte</button></li>
                             <li>
-                                <button type="button" class="pannel-body__item pannel-body--last trigger-open">Se déconnecter de {{ "@" . Auth::user()->username }}</button>
+                                <button type="button" class="pannel-body__item pannel-body--last trigger-open trigger-hidde">Se déconnecter de {{ "@" . Auth::user()->username }}</button>
                             </li>
                         </ul>
                     </ul>

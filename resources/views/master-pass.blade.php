@@ -13,14 +13,12 @@
 </head>
 <body>
 
-    @auth
-        {{-- Affichage de message d'alert --}}
-        @if (session('content'))
-            <x-alert :type="session('type')">
-                {{ session('content') }}
-            </x-alert>
-        @endif
-    @endauth
+    {{-- Affichage de message d'alert --}}
+    @if (session('content'))
+        <x-alert :type="session('type')">
+            {{ session('content') }}
+        </x-alert>
+    @endif
 
     <main class="principal">
         @yield('mainPass')

@@ -1,40 +1,43 @@
 @extends('master-pass')
 
 @section('mainPass')
-<section class="section section--reset">
-    <div class="reset__container">
-        <div class="reset__card">
-            <h2 class="reset__title">Réinitialisation du mot de passe</h2>
-            <p class="reset__description">Entrez l’adresse email liée à votre compte. Nous vous enverrons un code de réinitialisation.</p>
+<div class="min-h-screen bg-gray-100 flex items-center justify-center px-4 py-8">
+    <div class="w-full max-w-md bg-white rounded-2xl shadow-lg p-8">
+        <h2 class="text-xl font-bold text-gray-800 mb-6 text-center">Mot de passe oublié ?</h2>
+        <p class="text-lg text-gray-800 mb-6 text-start">
+            Entrez l'adresse e-mail associée à votre compte. <br>
+            Nous vous enverrons un code de réinitialisation.
+        </p>
 
-            @if (session('error'))
-                <div class="alert alert--danger">
-                    {{ session('error') }}
-                </div>
-            @endif
+        <form method="POST" action="{{ route('password.email') }}" class="space-y-5">
+            @csrf
 
-            @if ($errors->any())
-                <div class="alert alert--danger">
-                    <ul class="alert__list">
-                        @foreach ($errors->all() as $error)
-                            <li class="alert__item">{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+            <!-- Email -->
+            <div>
+                <label for="email" class="block text-sm font-medium text-gray-700">Adresse email</label>
+                <input id="email" name="email" type="email" autofocus
+                       class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded shadow-sm focus:outline-none focus:ring-2 transition duration-200 @error('email') focus:ring-red-500  focus:border-red-500 @enderror "
+                       placeholder="ex: vous@example.com">
+                <!-- Affichage des erreurs -->
+                @error('email')
+                    <p class="mb-4 text-sm text-red-600"><i class="ri-error-warning-fill"></i> {{ $message }}</p>
+                @enderror
+            </div>
 
-            <form action="{{ route('password.send-code') }}" method="POST" class="reset__form">
-                @csrf
-                <div class="form__group">
-                    <label for="email" class="form__label">Adresse email</label>
-                    <input type="email" name="email" id="email" class="form__input" placeholder="exemple@email.com" required autofocus>
-                </div>
+            <!-- Bouton -->
+            <div class="pt-4">
+                <button type="submit"
+                        class="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition duration-200 font-semibold">
+                    Envoyer le code de réinitialisation
+                </button>
+            </div>
+        </form>
 
-                <button type="submit" class="btn btn--primary">Envoyer le code</button>
-            </form>
-
-            <a href="{{ route('auth.login') }}" class="reset__link">← Retour à la connexion</a>
+        <div class="text-center mt-4">
+            <a href="{{ route('home') }}" class="text-sm text-blue-600 hover:underline">
+                Retour à l'accueil
+            </a>
         </div>
     </div>
-</section>
+</div>
 @endsection

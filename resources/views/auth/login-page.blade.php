@@ -51,7 +51,7 @@ Connectez-vous à votre compte pour retrouver
                     </div>
 
                     <div class="forgotpassword">
-                        <a href="#" class="forgotpassword__link">Mot de passe oublié ?</a>
+                        <a href="{{ route('password.identify') }}" class="forgotpassword__link">Mot de passe oublié ?</a>
                     </div>
                 </div>
 

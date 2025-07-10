@@ -33,6 +33,9 @@
             } @else if($type == "success") {
                 @include backdrop-filter(alert-color(success100), .9, 20px);
                 color: alert-color(success950);
+            } @else if($type == "info") {
+                @include backdrop-filter(alert-color(info100), .9, 20px);
+                color: alert-color(info950);
             } @else {
                 @include backdrop-filter(alert-color(warning100), .9, 20px);
                 color: alert-color(warning950);
@@ -55,6 +58,9 @@
                     } @else if($type == "success") {
                         background-color: alert-color(success50);
                         color: alert-color(success500) !important;
+                    } @else if($type == "info") {
+                        background-color: alert-color(info50);
+                        color: alert-color(info500) !important;
                     } @else {
                         background-color: alert-color(warning50);
                         color: alert-color(warning500) !important;
@@ -97,6 +103,8 @@
                             background-color: alert-color(danger50);
                         } @else if($type == "success") {
                             background-color: alert-color(success50);
+                        } @else if($type == "info") {
+                            background-color: alert-color(info50);
                         } @else {
                             background-color: alert-color(warning50);
                         }

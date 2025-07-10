@@ -18,77 +18,62 @@ class PasswordResetController extends Controller
         return view('auth.password.reset');
     }
 
-    // Met à jour le mot de passe
+    /**
+     * Met à jour le mot de passe de l'utilisateur connecté.
+     */
     public function updatePassword(Request $request)
     {
-        $request->validate([
-            'current_password' => ['required'],
-            'new_password' => ['required', 'confirmed', 'min:8'],
-        ]);
-
         $user = Auth::user();
 
-        // Vérifie le mot de passe actuel
+        // Validation des champs
+        $request->validate([
+            'current_password' => ['required'],
+            'password' => ['required', 'min:6', 'confirmed'],
+            'password_confirmation' => ['required', 'min:6']
+        ],
+        [
+            'current_password.required' => 'Veuillez renseigner ce champ',
+            'password.required' => 'Veuillez renseigner le champ *Mot de passe',
+            'password.min' => 'Le mot de passe doit contenir au-moins 6 caractères',
+            'password.confirmed' => 'Les mots de passe ne correspondent pas.',
+            'password_confirmation.required' => 'Veuillez confirmer votre mot de passe',
+            'password_confirmation.min' => 'Le mot de passe doit contenir au-moins 6 caractères'
+
+        ]);
+
+        // Vérifie si le mot de passe actuel est correct
         if (!Hash::check($request->current_password, $user->password)) {
-            return back()->withErrors(['current_password' => 'Mot de passe actuel incorrect.']);
+            return back()->with([
+                'type' => 'danger',
+                'content' => 'Le mot de passe actuel est incorrect.'
+            ]);
         }
 
-        // Met à jour
-        $user->password = Hash::make($request->new_password);
+        // Vérifie si le nouveau mot de passe est différent de l'ancien
+        if (Hash::check($request->password, $user->password)) {
+            return back()->with([
+                'type' => 'danger',
+                'content' => 'Le nouveau mot de passe doit être différent de l\'ancien.'
+            ]);
+        }
+
+        // Mise à jour du mot de passe
+        $user->password = $request->password;
+        $user->last_password_reset_at = now(); // suivi du reset
         $user->save();
+
+        // (Optionnel) Déconnecter l'utilisateur après reset
+        // Auth::logout();
 
         return redirect()->route('home')
             ->with('type', 'success')
             ->with('content', 'Votre mot de passe a été mis à jour avec succès.');
     }
 
-    /**
-     * Affiche la page de demande de réinitialisation.
-     */
+    // Affiche le formulaire de forgot
     public function showForgotPasswordForm()
     {
         return view('auth.password.forgot');
-    }
-
-    /**
-     * Envoie le code de réinitialisation au mail fourni.
-     */
-    public function sendCode(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'email' => ['required', 'email', 'exists:users,email'],
-        ]);
-
-        if ($validator->fails()) {
-            return back()
-                ->withErrors($validator)
-                ->withInput()
-                ->with('type', 'error')
-                ->with('content', 'Veuillez fournir un email valide.');
-        }
-
-        $email = $request->email;
-
-        // Vérifie si une réinitialisation a été faite il y a moins de 48h
-        $lastResetKey = 'last_reset_' . $email;
-        if (Cache::has($lastResetKey)) {
-            return back()
-                ->with('type', 'error')
-                ->with('content', 'Vous devez attendre 48h avant de faire une autre réinitialisation de mot de passe.');
-        }
-
-        // Génération d’un code à 6 chiffres
-        $code = rand(100000, 999999);
-
-        // Stocker temporairement le code dans le cache pour 15 min
-        Cache::put('reset_code_' . $email, $code, now()->addMinutes(15));
-
-        // Simuler l’envoi par email (à remplacer par ton système d’email réel)
-        Mail::raw("Votre code de réinitialisation est : $code", function ($message) use ($email) {
-            $message->to($email)->subject('Code de réinitialisation');
-        });
-
-        return redirect()->route('auth.password.verify-code')->with('email', $email);
     }
 }
 

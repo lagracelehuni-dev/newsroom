@@ -3,7 +3,7 @@
     const NAV_LINKS = document.querySelectorAll('.nav-link');
     const TRIGGER_BACK = document.querySelectorAll('.trigger-back');
     const TRIGGER_OPEN = document.querySelectorAll('.trigger-open')
-    const TRIGGER_OPEN_SD = document.querySelector('.trigger-open-sd')
+    const TRIGGER_OPEN_SD = document.querySelectorAll('.trigger-open-sd')
     const TRIGGER_CLOSE = document.querySelectorAll('.trigger-close')
     const BLOC_MODAL__LOGOUT = document.querySelector('.bloc__modal.bloc--modal-logout')
     const BLOC_MODAL__DELETE_ACCOUNT = document.querySelector('.bloc__modal.bloc--modal-delete-account')
@@ -62,10 +62,12 @@
         });
     }
 
-    if (TRIGGER_OPEN_SD) {
-        TRIGGER_OPEN_SD.addEventListener('click', () => {
-            BLOC_MODAL__DELETE_ACCOUNT.style.display = 'flex';
-        })
+    if (TRIGGER_OPEN_SD.length) {
+        TRIGGER_OPEN_SD.forEach((trigger) => {
+            trigger.addEventListener('click', () => {
+                BLOC_MODAL__DELETE_ACCOUNT.style.display = 'flex';
+            });
+        });
     }
 
     // Gestion des déclencheurs de fermeture

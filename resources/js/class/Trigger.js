@@ -16,11 +16,18 @@ class Trigger
         }
     }
 
-    hidden ()
+    hidden (triggerHidde)
     {
         if (this.hiddenTrigger && this.blocElement) {
             this.hiddenTrigger.addEventListener('click', () => {
                 this.blocElement.classList.remove('is-visible');
+            });
+        }
+        if (triggerHidde.length && this.blocElement) {
+            triggerHidde.forEach(trigger => {
+                trigger.addEventListener('click', () => {
+                    this.blocElement.classList.remove('is-visible');
+                });
             });
         }
     }
