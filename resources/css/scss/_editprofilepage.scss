@@ -1,5 +1,5 @@
 .edit-profil__body {
-    @include width-height (100%);
+    @include width-height (100%, 100%);
     @include flexbox (flex, column, start, start);
 
     .edit-profil__avatar {
@@ -113,7 +113,7 @@
     }
 
     .edit-profil__actions {
-        @include width-height (100%);
+        @include width-height (100%, 100%);
         padding: 1rem 1.5rem;
         padding-top: 0;
     }

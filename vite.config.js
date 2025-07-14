@@ -6,7 +6,7 @@ export default defineConfig({
         host: '0.0.0.0',
         port: 5173,
         hmr: {
-        host: '127.0.0.1', // ← ton IP ici aussi
+        host: '192.168.150.199', // ← ton IP ici aussi
         },
     },
     plugins: [

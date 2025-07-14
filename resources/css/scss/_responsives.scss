@@ -57,6 +57,7 @@
 }
 
 @media (min-width: 320px) and (max-width: 767px) {
+
     .bloc__absolute {
         @include width-height (100%, 100vh !important, calc((breakpoints(xxl) * 50) / 100));
         box-shadow: none;
@@ -66,6 +67,7 @@
 
     .homepage__main {
         width: 100% !important;
+        height: 100%;
         max-width: 100% !important;
         height: 100vh;
         border-radius: 0 !important;
