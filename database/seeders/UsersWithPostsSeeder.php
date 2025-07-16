@@ -43,18 +43,18 @@ class UsersWithPostsSeeder extends Seeder
         }
 
         $categoryIds = Category::pluck('id')->toArray();
-        $allUsers = User::factory(20)->create();
+        $allUsers = User::factory(100)->create();
 
         // Génère les utilisateurs, articles, commentaires, réponses, likes et signets
         $allUsers->each(function ($user) use ($categoryIds, $faker, $allUsers) {
-            // Chaque utilisateur a entre 2 à 5 articles
-            Post::factory(rand(2, 5))->create([
+            // Chaque utilisateur a entre 0 à 50 articles
+            Post::factory(rand(0, 10))->create([
                 'user_id' => $user->id,
                 'category_id' => $faker->randomElement($categoryIds),
-                'cover_image' => 'https://picsum.photos/800/400?random=' . rand(1, 1000), // image factice
+                'cover_image' => 'https://picsum.photos/800/400?random=' . rand(1, 100), // image factice
             ])->each(function ($post) use ($faker, $allUsers) {
-                // Ajoute entre 2 et 5 commentaires d'autres utilisateurs
-                $commenters = $allUsers->shuffle()->take(rand(2, 5));
+                // Ajoute entre 0 et 30 commentaires d'autres utilisateurs
+                $commenters = $allUsers->shuffle()->take(rand(0, 10));
                 foreach ($commenters as $commenter) {
                     $comment = Comment::factory()->create([
                         'user_id' => $commenter->id,
@@ -62,8 +62,8 @@ class UsersWithPostsSeeder extends Seeder
                         'content' => $faker->paragraph(),
                     ]);
 
-                    // Ajoute entre 0 et 3 réponses à ce commentaire
-                    $repliers = $allUsers->shuffle()->take(rand(0, 3));
+                    // Ajoute entre 0 et 5 réponses à ce commentaire
+                    $repliers = $allUsers->shuffle()->take(rand(0, 5));
                     foreach ($repliers as $replier) {
                         Comment::factory()->create([
                             'user_id' => $replier->id,
@@ -74,8 +74,12 @@ class UsersWithPostsSeeder extends Seeder
                     }
                 }
 
+                //Ajoute des vues au post
+                $viewers = $allUsers->shuffle()->take(rand(0, 100));
+                $post->increment('views_count', $viewers->count());
+
                 // Ajoute des likes au post
-                $likers = $allUsers->shuffle()->take(rand(0, 10));
+                $likers = $allUsers->shuffle()->take(rand(0, 100));
                 foreach ($likers as $liker) {
                     $post->likes()->create([
                         'user_id' => $liker->id,

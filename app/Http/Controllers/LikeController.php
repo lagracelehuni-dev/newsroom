@@ -48,27 +48,26 @@ class LikeController extends Controller
                 'liked' => false,
                 'count' => $likeable->likes()->count(),
             ]);
-        } else {
-            // Création du like
-            $likeable->likes()->create([
-                'user_id' => $user->id,
-            ]);
-
-            // ✨ Envoi de notification selon le type
-            if ($likeableType === 'post' && $likeable->user_id !== $user->id) {
-                // Liker un article
-                $likeable->user->notify(new ArticleLiked($user, $likeable));
-            }
-
-            if ($likeableType === 'comment' && $likeable->user_id !== $user->id) {
-                // Liker un commentaire ou une réponse
-                $likeable->user->notify(new CommentLiked($user, $likeable));
-            }
-
-            return response()->json([
-                'liked' => true,
-                'count' => $likeable->likes()->count(),
-            ]);
         }
+        // Création du like
+        $likeable->likes()->create([
+            'user_id' => $user->id,
+        ]);
+
+        // ✨ Envoi de notification selon le type
+        if ($likeableType === 'post' && $likeable->user_id !== $user->id) {
+            // Liker un article
+            $likeable->user->notify(new ArticleLiked($user, $likeable));
+        }
+
+        if ($likeableType === 'comment' && $likeable->user_id !== $user->id) {
+            // Liker un commentaire ou une réponse
+            $likeable->user->notify(new CommentLiked($user, $likeable));
+        }
+
+        return response()->json([
+            'liked' => true,
+            'count' => $likeable->likes()->count(),
+        ]);
     }
 }

@@ -173,13 +173,9 @@ class PostController extends Controller
         $article->delete();
 
         // Empêcher le retour arrière sur la page supprimée
-        return redirect()->route('home', [
-            'type' => 'success',
-            'content' => 'Article supprimé avec succès.'
-        ])->withHeaders([
-            'Cache-Control' => 'no-store, no-cache, must-revalidate, max-age=0',
-            'Pragma' => 'no-cache',
-            'Expires' => 'Sat, 01 Jan 2000 00:00:00 GMT',
-        ]);
+        return redirect()
+            ->route('home')
+            ->with('type','success')
+            ->with('content','Article supprimé avec succès.');
     }
 }

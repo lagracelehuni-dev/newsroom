@@ -195,7 +195,8 @@
 .image-import {
     position: relative;
 
-    &.is-import {
+    &.is-import,
+    &.comment-edit__import {
         // margin: .8rem 1rem;
         @include flexbox (flex, column, start, center, .3rem);
         padding: .3rem;

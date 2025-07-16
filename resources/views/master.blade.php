@@ -22,11 +22,7 @@
             <x-popup-congrats></x-popup-congrats>
         @endif
 
-        @if (request()->has('content') && request()->has('type'))
-            <x-alert :type="request('type')">
-                {{ request('content') }}
-            </x-alert>
-        @elseif (session('content'))
+        @if (session('content'))
             <x-alert :type="session('type')">
                 {{ session('content') }}
             </x-alert>

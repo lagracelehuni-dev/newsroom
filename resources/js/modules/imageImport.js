@@ -1,11 +1,12 @@
 // Fonction utilitaire pour initialiser l'import d'image sur un parent donné (ou document par défaut)
-export function initImageImport(parent = document, commentBoxContainer = null) {
+export function initImageImport(parent = document) {
   parent.querySelectorAll('.image-import').forEach(importBloc => {
     const fileInput = importBloc.querySelector('.image-import__input');
     const imgBloc = importBloc.querySelector('.image-import__preview');
     const closeBtn = importBloc.querySelector('.image-import__close');
     const browseBtn = importBloc.querySelector('.image-import__browse');
     const img = imgBloc ? imgBloc.querySelector('img') : null;
+    const commentBoxContainer = document.querySelector('.comment-box__container');
 
     // Bouton parcourir
     if (browseBtn && fileInput && !browseBtn.dataset.imageImportInit) {
@@ -33,8 +34,6 @@ export function initImageImport(parent = document, commentBoxContainer = null) {
         importBloc.classList.add('is-import');
       });
       fileInput.dataset.imageImportInit = '1';
-      
-
     }
 
     // Fermeture de l'image importée
@@ -54,13 +53,14 @@ export function initImageImport(parent = document, commentBoxContainer = null) {
 }
 
 // Initialisation automatique sur tout le document pour l'import d'image dynamique
-window.initImageImport = function(parent = document, commentBoxContainer = null) {
+window.initImageImport = function(parent = document) {
   parent.querySelectorAll('.image-import').forEach(importBloc => {
     const fileInput = importBloc.querySelector('.image-import__input');
     const imgBloc = importBloc.querySelector('.image-import__preview');
     const closeBtn = importBloc.querySelector('.image-import__close');
     const browseBtn = importBloc.querySelector('.image-import__browse');
     const img = imgBloc ? imgBloc.querySelector('img') : null;
+    const commentBoxContainer = document.querySelector('.comment-box__container');
 
     // Bouton parcourir
     if (browseBtn && fileInput && !browseBtn.dataset.imageImportInit) {

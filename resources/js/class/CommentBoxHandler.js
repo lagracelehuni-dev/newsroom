@@ -74,6 +74,22 @@ export default class CommentBoxHandler {
                         mainBox.style.display = 'flex';
                         const mainBoxContainer = document.querySelector('.comment-box__container');
                         if (mainBoxContainer) mainBoxContainer.classList.remove('is-active');
+
+                        document.querySelectorAll('.image-import').forEach(importBloc => {
+                            const fileInput = importBloc.querySelector('.image-import__input');
+                            const imgBloc = importBloc.querySelector('.image-import__preview');
+                            const closeBtn = importBloc.querySelector('.image-import__close');
+                            const img = imgBloc ? imgBloc.querySelector('img') : null;
+                        
+                            // Fermeture de l'image importée
+                            if (closeBtn && img && fileInput) {
+                                imgBloc.style.display = 'none';
+                                closeBtn.style.display = 'none';
+                                importBloc.classList.remove('is-import');
+                                img.src = '';
+                                fileInput.value = '';
+                            }
+                        });
                     }
                 } else if (this.form.classList.contains('comment-box')) {
                     // Réafficher la box principale si elle existe
@@ -84,6 +100,21 @@ export default class CommentBoxHandler {
                         if (COMMENT_INPUT) COMMENT_INPUT.classList.remove('is-focus');
                         const mainBoxContainer = document.querySelector('.comment-box__container');
                         if (mainBoxContainer) mainBoxContainer.classList.remove('is-active');
+                        document.querySelectorAll('.image-import').forEach(importBloc => {
+                            const fileInput = importBloc.querySelector('.image-import__input');
+                            const imgBloc = importBloc.querySelector('.image-import__preview');
+                            const closeBtn = importBloc.querySelector('.image-import__close');
+                            const img = imgBloc ? imgBloc.querySelector('img') : null;
+                        
+                            // Fermeture de l'image importée
+                            if (closeBtn && img && fileInput) {
+                                imgBloc.style.display = 'none';
+                                closeBtn.style.display = 'none';
+                                importBloc.classList.remove('is-import');
+                                img.src = '';
+                                fileInput.value = '';
+                            }
+                        });
                     }
                 }
             } else {
@@ -110,24 +141,54 @@ document.addEventListener('click', function(e) {
         e.preventDefault();
         document.querySelectorAll('.comment__content-pannel').forEach(panel => panel.style.display = 'none');
         const commentDiv = e.target.closest('.comment');
+        const contentText = commentDiv.querySelector('.comment__content-text');
         const contentP = commentDiv.querySelector('.text__paragraph');
+        const contentImg = commentDiv.querySelector('.comment__content-img img')
         const originalText = contentP.textContent;
+        const imgSrc = contentImg?.src ?? "Pas d'image";
+        const extraClass = "comment-edit__import"
+        const inputClass = "comment-edit__import-input"
+        const previewClass = "comment-edit__import-img"
+        const btnClass = "comment-edit-box__btn comment-edit-box__btn--image tooltip tooltip--top-right"
+        const btnClose = "comment-edit__import-close"
+
+        
         // Crée un formulaire inline
         const form = document.createElement('form');
         form.className = 'comment-edit-form';
         form.innerHTML = `
-            <div class"bloc__textarea">
-                <textarea type="text" class="comment-edit__textarea" name="comment">${originalText}</textarea>
+            <div class="bloc__textarea">
+                <textarea type="text" class="comment-edit__textarea" name="comment">${escapeHTML(originalText)}</textarea>
             </div>
+            
+            <div class="image-import ${ extraClass ?? '' }">
+                <input type="file" name="import__photo" class="image-import__input ${ inputClass ?? '' }" accept="image/jpeg,image/jpg,image/png" hidden>
+                <div class="image-import__preview ${ previewClass ?? '' }">
+                    <img src="${ escapeHTML(imgSrc) }" alt="Aperçu de l'image">
+                </div>
+                <div class="image-import__browse ${ btnClass ?? '' }" data-title="Importer une image"><i class="ri ri-image-fill ri-lg"></i></div>
+                <div class="image-import__close ${ btnClose ?? '' }"><i class="ri ri-close-fill"></i></div>
+            </div>
+            <input type="hidden" name="remove_image" value="0">
             <div class="s-stack">
                 <button class="btn btn-sm btn-primary" type="submit">Enregistrer</button>
                 <button class="btn btn-sm btn-outlined-secondary cancel-edit" type="button">Annuler</button>
             </div>
         `;
-        contentP.replaceWith(form);
+        // Initialiser l'import d'image sur ce formulaire nouvellement créé
+        if (window.initImageImport) window.initImageImport(form);
+        // Ajout gestion suppression image
+        const closeBtn = form.querySelector('.image-import__close');
+        const removeInput = form.querySelector('input[name="remove_image"]');
+        if (closeBtn && removeInput) {
+            closeBtn.addEventListener('click', function() {
+                removeInput.value = "1";
+            });
+        }
+        contentText.replaceWith(form);
 
         form.querySelector('.cancel-edit').onclick = () => {
-            form.replaceWith(contentP);
+            form.replaceWith(contentText);
         };
 
         form.onsubmit = function(ev) {
@@ -231,6 +292,7 @@ document.addEventListener('click', function(e) {
     }
 });
 
+
 // Fonction confirmAction réutilisable
 function confirmAction(message, onConfirm) {
     const blocConfirmAction = document.querySelector('.bloc__confirm-action') || document.body;
@@ -252,4 +314,16 @@ function confirmAction(message, onConfirm) {
         modal.remove();
         if (typeof onConfirm === 'function') onConfirm();
     };
+}
+
+function escapeHTML(str) {
+    return str.replace(/[&<>"']/g, function(m) {
+        return ({
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#39;'
+        })[m];
+    });
 }

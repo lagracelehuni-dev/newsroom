@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Comment;
 use App\Models\Post;
 use App\Notifications\ArticleCommented;
@@ -90,6 +91,7 @@ class CommentController extends Controller
         // 1. Validation
         $request->validate([
             'comment' => 'required|string|max:1000',
+            'import__photo' => 'nullable|image|max:2048',
         ]);
 
         // 2. Récupération du commentaire
@@ -105,6 +107,22 @@ class CommentController extends Controller
 
         // 4. Mise à jour du contenu
         $comment->content = $request->comment;
+        
+        // Gestion de l'image importée
+        if ($request->hasFile('import__photo')) {
+            // Suppression de l'ancienne image si elle existe
+            if ($comment->image) {
+                Storage::disk('public')->delete($comment->image);
+            }
+            $path = $request->file('import__photo')->store('comments', 'public');
+            $comment->image = $path;
+        } elseif ($request->remove_image) {
+            // Suppression de l'image si demandé explicitement
+            if ($comment->image) {
+                Storage::disk('public')->delete($comment->image);
+                $comment->image = null;
+            }
+        }
         $comment->save();
 
         // 5. Reload des relations nécessaires

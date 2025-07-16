@@ -20,20 +20,20 @@ import { initImageImport } from './imageImport.js';
     let lastScrollY = 100;
 
     if (SECTION_HOME) {
-      SECTION_HOME.addEventListener('scroll', function () {
-        let currentScroll = SECTION_HOME.clientHeight + SECTION_HOME.scrollTop;
-        if(COMMENT_BOX && COMMENT_REPLY) {
-          if (currentScroll >= lastScrollY) {
-            COMMENT_BOX.style.bottom = '0px';
-            COMMENT_REPLY.style.bottom = '0px';
-          } else {
-            COMMENT_BOX.style.bottom = COMMENT_BOX_CONTAINER.classList.contains('is-active') ? '-300px' : '-75px';
-            // Si tu utilises l'import universel, adapte ici si besoin
-            COMMENT_REPLY.style.bottom = '-343px';
-          }
-        }
-        currentScroll = lastScrollY;
-      });
+      // SECTION_HOME.addEventListener('scroll', function () {
+      //   let currentScroll = SECTION_HOME.clientHeight + SECTION_HOME.scrollTop;
+      //   if(COMMENT_BOX && COMMENT_REPLY) {
+      //     if (currentScroll >= lastScrollY) {
+      //       COMMENT_BOX.style.bottom = '0px';
+      //       COMMENT_REPLY.style.bottom = '0px';
+      //     } else {
+      //       COMMENT_BOX.style.bottom = COMMENT_BOX_CONTAINER.classList.contains('is-active') ? '-300px' : '-75px';
+      //       // Si tu utilises l'import universel, adapte ici si besoin
+      //       COMMENT_REPLY.style.bottom = '-343px';
+      //     }
+      //   }
+      //   currentScroll = lastScrollY;
+      // });
 
       if (COMMENT_INPUT) {
         COMMENT_INPUT.addEventListener('focus', function () {
@@ -99,7 +99,7 @@ import { initImageImport } from './imageImport.js';
         });
 
         // Initialisation de l'import image sur tout le document (ou cible spécifique)
-        initImageImport(document, COMMENT_BOX_CONTAINER);
+        initImageImport();
 
         // Si clic hors de la box commentaire ou de la box reply
         window.addEventListener('click', function (event) {

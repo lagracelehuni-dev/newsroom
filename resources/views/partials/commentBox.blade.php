@@ -47,17 +47,19 @@
         <div class="comment-box__avatar">
             <img src="{{ Auth::user()->avatar ? asset(Auth::user()->avatar) : asset('assets/img/profil/default.jpg') }}" alt="Photo de profil">
         </div>
-        <textarea name="comment" class="comment-box__textarea" placeholder="{{ $placeholder ?? 'Laissez un commentaire...' }}"></textarea>
-        <div class="comment-box__actions">
-            <x-image-import
-                extraClass="comment__import"
-                inputClass="comment__import-input"
-                previewClass="comment__import-img"
-                btnClass="comment-box__btn comment-box__btn--image tooltip tooltip--top-right"
-                btnClose="comment__import-close"
-                name="import__photo"
-            />
-            <button type="submit" class="comment-box__btn comment-box__btn--send tooltip tooltip--top-right" data-title="Commenter"><i class="fas fa-paper-plane fa-lg"></i></button>
+        <div class="comment-box__textarea-container">
+            <textarea name="comment" class="comment-box__textarea" placeholder="{{ $placeholder ?? 'Laissez un commentaire...' }}"></textarea>
+            <div class="comment-box__actions">
+                <x-image-import
+                    extraClass="comment__import"
+                    inputClass="comment__import-input"
+                    previewClass="comment__import-img"
+                    btnClass="comment-box__btn comment-box__btn--image tooltip tooltip--top-right"
+                    btnClose="comment__import-close"
+                    name="import__photo"
+                />
+                <button type="submit" class="comment-box__btn comment-box__btn--send tooltip tooltip--top-right" data-title="Commenter"><i class="fas fa-paper-plane fa-lg"></i></button>
+            </div>
         </div>
     </div>
 </form>

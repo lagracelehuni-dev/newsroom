@@ -62,7 +62,7 @@ class ArticleLiked extends Notification
             'user_avatar' => $this->liker->avatar ?? null,  // ajoute ici l’URL ou chemin de l’avatar
             'post_id'   => $this->post->id,
             'post_title'=> $this->post->title,
-            'message'   => $this->liker->first_name . " " . $this->liker->last_name . " a liké votre article ". $this->post->title,
+            'message'   => $this->liker->first_name . " " . $this->liker->last_name . " a liké votre article « ". $this->post->title . " ».",
         ];
     }
 }

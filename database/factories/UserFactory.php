@@ -27,7 +27,7 @@ class UserFactory extends Factory
         $lastname = $this->faker->lastName;
 
         // Génère un username unique basé sur prénom+nom
-        $username = Str::slug($firstname . $lastname);
+        $username = Str::slug($firstname . $lastname . rand(1, 99));
         $suffix = 1;
         while (\App\Models\User::where('username', $username)->exists()) {
             $username = Str::slug($firstname . $lastname) . $suffix++;

@@ -80,7 +80,9 @@ class NotificationController extends Controller
         $notification = $user->notifications()->findOrFail($id);
         $notification->delete();
 
-        return back()->with('success', 'Notification supprimée.');
+        return back()
+        ->with('type', 'info')
+        ->with('content', 'Notification supprimée.');
     }
 
 }

@@ -64,7 +64,7 @@ class ArticleCommented extends Notification
             'post_id'     => $this->post->id,
             'post_title'  => $this->post->title,
             'comment_id'  => $this->comment->id,
-            'message'     => $this->comment->user->first_name . " " . $this->comment->user->last_name . " a commenté votre article ". $this->post->title,
+            'message'     => $this->comment->user->first_name . " " . $this->comment->user->last_name . " a commenté votre article « ". $this->post->title . " ».",
         ];
     }
 }

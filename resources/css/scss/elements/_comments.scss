@@ -1,6 +1,7 @@
 .comment-reply {
     position: sticky;
-    bottom: -343px;
+    bottom: 0;
+    left: 0;
     width: 100%;
     @include flexbox (none, column, start, center);
     // padding: 3rem;
@@ -49,7 +50,7 @@
         padding: 0 1.5rem;
 
         .comment-reply__textarea {
-            @include width-height (100%, 200px);
+            @include width-height (100%, 80px);
             // max-width: 500px;
 
             @include flexbox (flex, row, center, start);
@@ -150,7 +151,8 @@
 
 .comment-box {
     position: sticky;
-    bottom: -75px;
+    bottom: 0;
+    left: 0;
     width: 100%;
     @include flexbox (flex, column, start, start);
 
@@ -163,11 +165,13 @@
 
     .comment-box__container {
         width: 100%;
-        @include flexbox (flex, column, start, start, .5rem);
-        padding: .8rem 1rem;
+        @include flexbox (flex, row, start, start, .35rem);
+        @include gridbox (grid, 1fr, 40px 1fr);
+        padding: .8rem .8rem;
 
         .comment-box__avatar {
-            @include width-height (40px, 40px);
+            position: relative;
+            @include width-height (40px);
             @include flexbox (flex, row, center, center);
             border-radius: 50%;
             overflow: hidden;
@@ -175,10 +179,15 @@
             img { width: 100%; }
         }
 
+        .comment-box__textarea-container {
+            position: relative;
+        }
+
         .comment-box__textarea {
+            // position: relative;
             width: 100%;
             height: 40px;
-            max-height: 150px;
+            max-height: 100px;
             @include flexbox (flex, row, center, start);
             border: none;
             border-radius: .5rem;
@@ -208,18 +217,22 @@
             }
 
             &.is-focus {
-                height: 75px;
+                height: 60px;
             }
         }
 
         .comment-box__actions {
-            width: 100%;
-            @include flexbox (flex, row, center, space-between);
+            // width: 100%;
+            position: absolute;
+            top: 50%;
+            right: .3rem;
+            transform: translateY(-50%);
+            @include flexbox (flex, row, center, start);
 
             .comment-box__btn {
-                @include width-height (40px, 40px);
+                @include width-height (30px, 30px);
                 @include flexbox (flex, row, center, center);
-                border-radius: .3rem;
+                border-radius: .5rem;
 
                 &.comment-box__btn--image {
                     border-radius: 50px;
@@ -233,6 +246,7 @@
                 &.comment-box__btn--send {
                     background-color: var(--blue600);
                     color: var(--white);
+                    font-size: $font-size-xs;
 
                     &:hover {
                         background-color: var(--blue500);
@@ -246,15 +260,19 @@
         }
 
         &.is-active {
-            display: flex;
-            flex-wrap: wrap;
 
             .comment-box__textarea {
                 width: 100%;
             }
 
             .comment-box__actions {
+                position: relative;
                 width: 100%;
+                top: 0;
+                right: 0;
+                transform: translateY(0);
+                margin-top: .8rem;
+                @include flexbox (flex, row, center, space-between);
             }
         }
     }
@@ -627,16 +645,16 @@
 }
 
 .comment-edit-form {
-    @include width-height (100%);
+    @include width-height (100%, auto, 500px);
     @include flexbox (flex, column, start, start);
     margin: 0;
     padding: 0;
     // border: 1px solid var(--gray200);
 
     .bloc__textarea {
-        // @include width-height (100%, 150px, 300px);
+        @include width-height (100%, 100px);
         @include flexbox (flex, row, start, start);
-        margin: 0;
+        margin-top: .5rem;
         padding: 0;
     }
 
@@ -656,6 +674,63 @@
 
     .s-stack {
         @include flexbox (flex, row, start, start, .25rem);
+    }
+
+    
+}
+
+.comment-edit__import-img {
+    @include flexbox (flex !important, row, center, center);
+}
+
+.comment-edit__import {
+    position: relative;
+    margin: .5rem 0;
+
+    .comment-edit__import-img {
+        width: 100px;
+        height: 100px;
+        border-radius: .5rem;
+        overflow: hidden;
+
+        img { width: 100%; }
+    }
+
+    .comment-edit__import-close {
+        cursor: pointer;
+        @include flexbox (none !important, row, center, center);
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        height: 20px;
+        width: 20px;
+
+        border: 1px solid var(--gray200);
+        border-radius: 50%;
+
+        background-color: var(--gray100);
+
+        color: var(--gray600);
+        font-size: $font-size-sm;
+
+        transition: color .3s linear;
+
+        &:hover {
+            color: var(--black);
+        }
+    }
+}
+
+.comment-edit-box__btn--image {
+    @include width-height (30px, 30px);
+    @include flexbox (flex, row, center, center);
+    border-radius: .5rem;
+    border-radius: 50px;
+    color: var(--gray400);
+
+    &:hover {
+        background-color: var(--gray100);
+        color: var(--black);
     }
 }
 
