@@ -73,7 +73,7 @@
         </div>
         <div class="article__reaction--second">
             <!-- Bouton sauvegarde -->
-            <button class="post__react post--saved bookmark-toggle" data-id="{{ $post->id }}">
+            <button class="{{ $actionReact }} post__react post--saved bookmark-toggle tooltip tooltip--bottom-right" data-id="{{ $post->id }}" data-title="Sauvegarder">
                 <i class="ri-bookmark-{{ Auth::user()?->bookmarks->contains($post->id) ? 'fill' : 'line' }}"></i>
             </button>
 

@@ -1,4 +1,7 @@
-@php $actionReact = Auth::check() ? 'action-react' : 'popup-trigger'; @endphp
+@php
+    $defaultRepliesToShow = 2;
+    $totalReplies = $comment->replies ? $comment->replies->count() : 0;
+@endphp
 <div class="comment" data-comment-id="{{ $comment->id }}">
     <div class="comment__avatar">
         <div class="comment__avatar-img">
@@ -68,17 +71,20 @@
         </div>
         {{-- les réponses d'un commentaire --}}
         <div class="comment__replies-container">
-            @if($comment->replies && $comment->replies->count() > 0)
+            @if($comment->replies && $totalReplies > 0)
                 <div class="comment__replies">
-                    @foreach($comment->replies as $reply)
-                        @include('partials.commentSingle', ['comment' => $reply])
+                    @foreach($comment->replies as $i => $reply)
+                        <div class="comment__reply-item {{ $i >= $defaultRepliesToShow ? 'hidden' : '' }}">
+                            @include('partials.commentSingle', ['comment' => $reply])
+                        </div>
                     @endforeach
                 </div>
-                {{-- Bouton show/hide responses --}}
-                <div class="btn-show__stack">
-                    <button class="comment__content-show btn__show-more">Afficher plus</button>
-                    <button class="comment__content-show btn__show-less">Afficher moins</button>
-                </div>
+                @if($totalReplies > $defaultRepliesToShow)
+                    <div class="btn-show__stack">
+                        <button class="comment__content-show btn__show-more">Afficher plus</button>
+                        <button class="comment__content-show btn__show-less hidden">Afficher moins</button>
+                    </div>
+                @endif
             @endif
         </div>
     </div>

@@ -36,7 +36,10 @@
 </section>
 
 <!-- Sidebar right -->
-<section class="sidebar sidebar--right">
+<section class="sidebar sidebar--right" id="sidebarRight">
+    <button class="sidebar__toggle" id="sidebarToggle" aria-label="Réduire/étendre la barre latérale">
+        <i class="ri ri-arrow-left-s-line"></i>
+    </button>
     @yield('sidebar')
 
     <footer class="footer">

@@ -65,3 +65,30 @@ function loadMoreComments(callback) {
             });
     }, 800);
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.btn-show__stack').forEach(function (btnStack) {
+        const showMoreBtn = btnStack.querySelector('.btn__show-more');
+        const showLessBtn = btnStack.querySelector('.btn__show-less');
+        const repliesContainer = btnStack.closest('.comment__replies-container').querySelector('.comment__replies');
+        const allReplies = repliesContainer.querySelectorAll('.comment__reply-item');
+        const defaultToShow = 2;
+
+        showMoreBtn?.addEventListener('click', function () {
+            allReplies.forEach((el, i) => {
+                if (i >= defaultToShow) el.classList.remove('hidden');
+            });
+            showMoreBtn.classList.add('hidden');
+            showLessBtn.classList.remove('hidden');
+        });
+
+        showLessBtn?.addEventListener('click', function () {
+            allReplies.forEach((el, i) => {
+                if (i >= defaultToShow) el.classList.add('hidden');
+            });
+            showMoreBtn.classList.remove('hidden');
+            showLessBtn.classList.add('hidden');
+            repliesContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    });
+});

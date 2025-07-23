@@ -165,13 +165,13 @@
 
     .comment-box__container {
         width: 100%;
-        @include flexbox (flex, row, start, start, .35rem);
+        @include flexbox (none, row, start, start, .35rem);
         @include gridbox (grid, 1fr, 40px 1fr);
         padding: .8rem .8rem;
 
         .comment-box__avatar {
             position: relative;
-            @include width-height (40px);
+            @include width-height (40px, 40px);
             @include flexbox (flex, row, center, center);
             border-radius: 50%;
             overflow: hidden;

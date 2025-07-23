@@ -25,4 +25,4 @@ import './bookmarks.js';
 import './trigger.js';
 import './importAvatar.js';
 import './evenstOnComments.js';
-
+import './sidebarToggle.js';
