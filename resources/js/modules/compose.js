@@ -1,5 +1,3 @@
-import { initImageImport } from './imageImport.js';
-
 // Gestion des champs automatiques (slug et temps de lecture)
 document.addEventListener('DOMContentLoaded', function() {
     // Temps de lecture automatique
@@ -14,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
         autoCheckbox.addEventListener('change', toggleManualInput);
         toggleManualInput(); // état initial
     }
+    
     // Slug automatique
     const slugAuto = document.getElementById('custom-slug');
     const slugInput = document.getElementById('compose__slug');
@@ -27,8 +26,3 @@ document.addEventListener('DOMContentLoaded', function() {
         toggleSlugInput();
     }
 });
-
-// Initialisation de l'import d'images
-if (document.querySelector('.compose__import')) {
-    initImageImport(document);
-}

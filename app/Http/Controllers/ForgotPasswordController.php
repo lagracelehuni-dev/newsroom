@@ -113,6 +113,9 @@ class ForgotPasswordController extends Controller
         // Supprimer le code après usage
         DB::table('password_resets')->where('email', $request->email)->delete();
 
+        // Supprimer le token de réinitialisation
+        DB::table('password_reset_tokens')->where('email', $request->email)->delete();
+
         // Connexion automatique (optionnel)
         Auth::login($user);
 
@@ -126,12 +129,26 @@ class ForgotPasswordController extends Controller
         $request->validate([
             'email' => ['required', 'email', 'exists:users,email'],
         ], [
-            'email.required' => 'L’adresse email est requise.',
-            'email.email' => 'Le format de l’email est invalide.',
-            'email.exists' => 'Aucun compte n’est lié à cette adresse.',
+            'email.required' => 'L\'adresse email est requise.',
+            'email.email' => 'Le format de l\'email est invalide.',
+            'email.exists' => 'Aucun compte n\'est lié à cette adresse.',
         ]);
 
         $user = User::where('email', $request->email)->first();
+
+        // Vérifier si un token valide existe pour cet email
+        $tokenRecord = DB::table('password_reset_tokens')
+            ->where('email', $user->email)
+            ->where('expires_at', '>', now())
+            ->first();
+
+        if (!$tokenRecord) {
+            return redirect()->route('password.identify')
+                ->with([
+                    'type' => 'danger',
+                    'content' => 'Session expirée. Veuillez recommencer la procédure.'
+                ]);
+        }
 
         // Générer un code à 6 chiffres
         $code = random_int(100000, 999999);
@@ -146,19 +163,16 @@ class ForgotPasswordController extends Controller
             'created_at' => now(),
         ]);
 
-        // Envoyer l’email
+        // Envoyer l'email
         Mail::to($user->email)->send(new \App\Mail\PasswordResetCodeMail($code));
 
-        // Stocker l’email dans la session pour sécuriser la prochaine étape
+        // Stocker l'email dans la session pour sécuriser la prochaine étape
         session([
             'email' => $user->email,
         ]);
 
-        // Nettoyage des données de session temporaires
-        session()->forget(['user_found', 'user_username', 'user_email', 'user_avatar']);
-
-        // Redirection vers le formulaire de saisie du code
-        return redirect()->route('password.verifycode.form')
+        // Redirection vers le formulaire de saisie du code avec le token
+        return redirect()->route('password.verifycode.form', ['token' => $tokenRecord->token])
             ->with('email', $user->email)
             ->with('type', 'info')
             ->with('content', 'Un code de réinitialisation vous a été envoyé par email.');

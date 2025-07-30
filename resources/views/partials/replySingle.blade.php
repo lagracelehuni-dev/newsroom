@@ -33,11 +33,6 @@
             <p class="text__paragraph">
                 {{ $reply->content }}
             </p>
-            @if ($reply->image)
-            <div class="comment__content-img">
-                <img src="{{ asset('storage/' . $reply->image) }}" alt="Image de la réponse">
-            </div>
-            @endif
             <button class="comment__content-text__btn btn-text--seemore">Voir plus</button>
             <button class="comment__content-text__btn btn-text--showless">Voir moins</button>
             @if($reply->replies && $reply->replies->count() > 0)

@@ -1,5 +1,3 @@
-import { initImageImport } from './imageImport.js';
-
 // Encapsulation pour éviter la pollution globale
 (function() {
   document.addEventListener('DOMContentLoaded', function () {
@@ -7,7 +5,6 @@ import { initImageImport } from './imageImport.js';
     const COMMENT_BOX = document.querySelector('.comment-box');
     const COMMENT_BOX_CONTAINER = document.querySelector('.comment-box__container');
     const COMMENT_INPUT = document.querySelector('.comment-box__textarea');
-    const COMMENT_BTN_IMG = document.querySelector('.comment-box__btn--image');
     const COMMENT_REPLY = document.querySelector('.comment-reply');
     const TRIGGER_REPLY = document.querySelectorAll('.trigger-reply');
     const REPLY_INPUT = document.querySelector('.comment-reply__textarea');
@@ -36,11 +33,10 @@ import { initImageImport } from './imageImport.js';
       // });
 
       if (COMMENT_INPUT) {
-        COMMENT_INPUT.addEventListener('focus', function () {
-          COMMENT_INPUT.classList.add('is-focus');
-          COMMENT_BOX_CONTAINER.classList.add('is-active');
-          COMMENT_BTN_IMG.classList.replace('tooltip--top-right', 'tooltip--top-left-5');
-        });
+        // COMMENT_INPUT.addEventListener('focus', function () {
+        //   COMMENT_INPUT.classList.add('is-focus');
+        //   COMMENT_BOX_CONTAINER.classList.add('is-active');
+        // });
 
         // Délégation d'événement pour le menu '...'
         document.addEventListener('click', function(event) {
@@ -84,22 +80,7 @@ import { initImageImport } from './imageImport.js';
           REPLY_INPUT.value = '';
           COMMENT_BOX.style.display = 'flex';
           COMMENT_BOX_CONTAINER.classList.remove('is-active');
-          // Réinitialiser l'import image dans la zone de réponse
-          COMMENT_REPLY.querySelectorAll('.image-import').forEach((importBloc) => {
-            const fileInput = importBloc.querySelector('.image-import__input');
-            const imgBloc = importBloc.querySelector('.image-import__preview');
-            const closeBtn = importBloc.querySelector('.image-import__close');
-            const img = imgBloc ? imgBloc.querySelector('img') : null;
-            if (imgBloc) imgBloc.style.display = 'none';
-            if (closeBtn) closeBtn.style.display = 'none';
-            importBloc.classList.remove('is-import');
-            if (img) img.src = '';
-            if (fileInput) fileInput.value = '';
-          });
         });
-
-        // Initialisation de l'import image sur tout le document (ou cible spécifique)
-        initImageImport();
 
         // Si clic hors de la box commentaire ou de la box reply
         window.addEventListener('click', function (event) {
@@ -123,7 +104,6 @@ import { initImageImport } from './imageImport.js';
             }
             if (COMMENT_INPUT) COMMENT_INPUT.classList.remove('is-focus');
             if (COMMENT_BOX_CONTAINER) COMMENT_BOX_CONTAINER.classList.remove('is-active');
-            if (COMMENT_BTN_IMG) COMMENT_BTN_IMG.classList.replace('tooltip--top-left-5', 'tooltip--top-right');
           }
         });
       }

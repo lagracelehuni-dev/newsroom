@@ -13,7 +13,7 @@
         {{-- Header --}}
         <div class="comment__content-header">
             <div class="comment__content-infos">
-                <a {{ Auth::check() ? ("href=" . route('profil', ['username' => $comment->user->username])) : "" }} class="{{ $actionReact }} comment__content-name">
+                <a {{ Auth::check() ? ("href=" . route('profil', ['username' => $comment->user->username])) : "" }} class="comment__content-name">
                     {{ "@" . $comment->user->username ?? 'Utilisateur inconnu' }}
                 </a>
                 <i class="ri ri-circle-fill"></i>
@@ -44,22 +44,16 @@
                 </p>
                 <button class="comment__content-text__btn btn-text--seemore">Voir plus</button>
                 <button class="comment__content-text__btn btn-text--showless">Voir moins</button>
-                @if ($comment->image)
-                <div class="lightbox-trigger comment__content-img">
-                    <img src="{{ asset($comment->image) }}" alt="Image de la réponse">
-                </div>
-                @endif
-
             </div>
         </div>
         {{-- Footer --}}
         <div class="comment__content-footer">
             <div class="comment__content-actions">
-                <button class="{{ $actionReact }} btn__content-actions like-btn btn--like tooltip tooltip--top-right" data-id="{{ $comment->id }}" data-type="comment" data-title="Liker">
+                <button class="btn__content-actions like-btn btn--like tooltip tooltip--top-right" data-id="{{ $comment->id }}" data-type="comment" data-title="Liker">
                     <i class="ri ri-heart-{{ $comment->likes->contains('user_id', Auth::id()) ? 'fill' : 'line' }} ri-lg"></i>
                     <p>{{ Auth::check() && $comment->likes_count !== 0 ? $comment->likes_count : "" }}</p>
                 </button>
-                <button class="{{ $actionReact }} trigger-reply btn__content-actions btn--reply" data-comment-username="{{ $comment->user->username }}"><i class="ri ri-reply-all-fill ri-lg"></i> <p>Répondre</p></button>
+                <button class="trigger-reply btn__content-actions btn--reply" data-comment-username="{{ $comment->user->username }}"><i class="ri ri-reply-all-fill ri-lg"></i> <p>Répondre</p></button>
             </div>
             @if($comment->replies && $comment->replies->count() > 0)
                 <button type="button" class="comment__content-responses">

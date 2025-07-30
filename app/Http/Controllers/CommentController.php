@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 use App\Models\Comment;
 use App\Models\Post;
 use App\Notifications\ArticleCommented;
@@ -24,11 +23,10 @@ class CommentController extends Controller
         $request->validate([
             'post_id' => 'required|exists:posts,id',
             'comment' => 'required|string|max:1000',
-            'import__photo' => 'nullable|image|max:2048',
             'parent_id' => 'nullable|exists:comments,id',
         ]);
 
-        // 2. Vérifie si le champ commentaire n’est pas vide après nettoyage
+        // 2. Vérifie si le champ commentaire n'est pas vide après nettoyage
         if (trim($request->input('comment')) === '') {
             return response()->json([
                 'success' => false,
@@ -43,34 +41,30 @@ class CommentController extends Controller
         $comment->parent_id = $request->input('parent_id') ?: null;
         $comment->content = $request->comment;
 
-        // 4. Gestion optionnelle de l'image
-        if ($request->hasFile('import__photo')) {
-            $comment->image = 'storage/' .  $request->file('import__photo')->store('comments', 'public');
-        }
-
         $comment->save();
 
-        // 5. Chargement des relations utiles pour la vue
+        // 4. Chargement des relations utiles pour la vue
         $comment->load('user', 'likes');
 
-        // 6. Notifications
+        // 5. Notifications
         $user = Auth::user();
 
         if ($comment->parent_id === null) {
-            // Notification à l'auteur du post
-            $post = Post::find($comment->post_id);
-            if ($post && $post->user_id !== $user->id) {
+            // Notification pour un nouveau commentaire sur l'article
+            $post = Post::find($request->post_id);
+            if ($post && $post->user_id !== Auth::id()) {
                 $post->user->notify(new ArticleCommented($user, $post, $comment));
             }
         } else {
-            // Notification à l'auteur du commentaire parent
+            // Notification pour une réponse à un commentaire
             $parentComment = Comment::find($comment->parent_id);
-            if ($parentComment && $parentComment->user_id !== $user->id) {
-                $parentComment->user->notify(new CommentReplied($user, $parentComment, $comment));
+            $post = Post::find($request->post_id);
+            if ($parentComment && $parentComment->user_id !== Auth::id()) {
+                $parentComment->user->notify(new CommentReplied($user, $post, $comment, $parentComment));
             }
         }
 
-        // 7. Rendu du HTML du commentaire à injecter en JS
+        // 6. Rendu HTML du nouveau commentaire
         $commentHtml = view('partials.commentSingle', compact('comment'))->render();
 
         return response()->json([
@@ -80,7 +74,7 @@ class CommentController extends Controller
     }
 
     /**
-     * Met à jour le contenu d’un commentaire.
+     * Met à jour un commentaire existant.
      *
      * @param Request $request
      * @param int $id
@@ -91,7 +85,6 @@ class CommentController extends Controller
         // 1. Validation
         $request->validate([
             'comment' => 'required|string|max:1000',
-            'import__photo' => 'nullable|image|max:2048',
         ]);
 
         // 2. Récupération du commentaire
@@ -107,22 +100,6 @@ class CommentController extends Controller
 
         // 4. Mise à jour du contenu
         $comment->content = $request->comment;
-        
-        // Gestion de l'image importée
-        if ($request->hasFile('import__photo')) {
-            // Suppression de l'ancienne image si elle existe
-            if ($comment->image) {
-                Storage::disk('public')->delete($comment->image);
-            }
-            $path = $request->file('import__photo')->store('comments', 'public');
-            $comment->image = $path;
-        } elseif ($request->remove_image) {
-            // Suppression de l'image si demandé explicitement
-            if ($comment->image) {
-                Storage::disk('public')->delete($comment->image);
-                $comment->image = null;
-            }
-        }
         $comment->save();
 
         // 5. Reload des relations nécessaires
@@ -147,7 +124,7 @@ class CommentController extends Controller
     {
         $comment = Comment::findOrFail($id);
 
-        // Vérifie si l'utilisateur est bien l'auteur
+        // Vérification d'autorisation
         if ($comment->user_id !== Auth::id()) {
             return response()->json([
                 'success' => false,
@@ -159,7 +136,7 @@ class CommentController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => 'Commentaire supprimé avec succès !',
+            'message' => 'Commentaire supprimé avec succès.'
         ]);
     }
 

@@ -170,7 +170,7 @@
     <div class="sidebar__stack sidebar__stack--condense">
         @auth
             <div class="stack__meta stack__meta--condense">
-                <div class="stack__meta-content stack__meta-content--condense auth-trigger">
+                <div class="stack__meta-content stack__meta-content--condense auth-trigger2">
                     <div class="stack__meta-avatar">
                         <img src="{{ asset(Auth::user()->avatar) }}" alt="Photo de profil">
                     </div>

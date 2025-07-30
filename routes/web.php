@@ -155,7 +155,7 @@ Route::post('/forgot-password/send-code',
 )->middleware(['identified', 'throttle.reset'])->name('password.send-code');
 
 // Étape 3 : Formulaire code + nouveau mot de passe
-Route::get('/verify-reset-code', fn () => view('auth.password.verify-code'))
+Route::get('/verify-reset-code/{token?}', [PasswordResetController::class, 'showVerifyCodeForm'])
     ->middleware('email.session')->name('password.verifycode.form');
 
 // Étape 4 : Soumission du nouveau mot de passe

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 class PasswordResetController extends Controller
 {
@@ -74,6 +75,39 @@ class PasswordResetController extends Controller
     public function showForgotPasswordForm()
     {
         return view('auth.password.forgot');
+    }
+
+    /**
+     * Affiche le formulaire de vérification du code de réinitialisation.
+     */
+    public function showVerifyCodeForm(Request $request, $token = null)
+    {
+        // Récupérer l'email de la session
+        $email = session('email');
+        
+        // Si pas d'email en session, essayer avec le token
+        if (!$email && $token) {
+            $tokenRecord = DB::table('password_reset_tokens')
+                ->where('token', $token)
+                ->where('expires_at', '>', now())
+                ->first();
+                
+            if ($tokenRecord) {
+                $email = $tokenRecord->email;
+                // Stocker l'email en session pour la suite
+                session(['email' => $email]);
+            }
+        }
+        
+        if (!$email) {
+            return redirect()->route('password.identify')
+                ->with([
+                    'type' => 'danger',
+                    'content' => 'Session expirée. Veuillez recommencer la procédure.'
+                ]);
+        }
+        
+        return view('auth.password.verify-code', compact('email'));
     }
 }
 

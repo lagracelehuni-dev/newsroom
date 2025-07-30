@@ -32,7 +32,7 @@ class UpdateProfilRequest extends FormRequest
             'bio' => 'nullable|string|max:160',
             'location' => 'nullable|string|max:50',
             'website' => 'nullable|url|max:255',
-            'avatar__input' => 'nullable|image|mimes:jpeg|max:2048', // 2MB max
+            'avatar__input' => 'nullable|image|mimes:jpeg,jpg|max:2048', // 2MB max
         ];
     }
 
@@ -53,8 +53,8 @@ class UpdateProfilRequest extends FormRequest
             'bio.max' => 'La biographie ne peut pas dépasser 160 caractères',
             'location.max' => 'La localisation ne peut pas dépasser 50 caractères',
             'website.url' => 'Le site web doit être une URL valide',
-            'avatar__input.image' => 'L\'avatar doit être une image valide (JPEG)',
-            'avatar__input.mimes' => 'L\'avatar doit être au format JPEG',
+            'avatar__input.image' => 'L\'avatar doit être une image valide (JPEG ou JPG)',
+            'avatar__input.mimes' => 'L\'avatar doit être au format JPEG ou JPG',
             'avatar__input.max' => 'L\'avatar ne peut pas dépasser 2MB',
         ];
     }

@@ -1,4 +1,4 @@
-<form class="comment-reply" method="POST" action="{{ route('comments.store') }}" enctype="multipart/form-data">
+<form class="comment-reply" method="POST" action="{{ route('comments.store') }}">
     @csrf
     <input type="hidden" name="post_id" value="{{ $post->id }}">
     <input type="hidden" name="parent_id" value="{{ $parent_id ?? '' }}"> <!-- parent_id forcé si fourni -->
@@ -15,15 +15,6 @@
         <textarea name="comment" class="comment-reply__textarea" placeholder="Votre réponse..."></textarea>
     </div>
     <div class="comment-reply__footer">
-        <!-- Importer une photo (optionnelle) -->
-        {{-- <x-image-import
-            :extraClass="$extraClass"
-            :inputClass="$inputClass"
-            :previewClass="$previewClass"
-            :btnClass="$btnClass"
-            :btnClose="$btnClose"
-            :name="$name"
-        /> --}}
         <button type="submit" class="comment-reply__btn comment-reply__btn--send">Répondre</button>
     </div>
     <div class="comment-reply__close"><i class="ri ri-close-fill"></i></div>

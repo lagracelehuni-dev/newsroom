@@ -15,9 +15,9 @@ class EnsureEmailIdentified
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!session()->has('user_email')) {
+        if (!session()->has('user_email') && !session()->has('email')) {
             return redirect()->route('password.identify')
-                ->withErrors(['email' => 'Veuillez d’abord rechercher votre compte.']);
+                ->withErrors(['email' => 'Veuillez d\'abord rechercher votre compte.']);
         }
 
         return $next($request);

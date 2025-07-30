@@ -1,6 +1,5 @@
 import './bootstrap';
 import './class/Trigger.js';
-import './class/ImportImage.js';
 import './class/CommentBoxHandler.js';
 import './modules/search.js';
 import './modules/isTruncated.js'
@@ -17,6 +16,8 @@ import './modules/auth.js';
 import './modules/alert.js';
 import './modules/sidebar.js';
 import './modules/lineClamp.js';
+import './modules/articleImageImport.js';
+import './modules/userPannel.js';
 import './like.js';
 import './article.js';
 import './articleMoreForProfil.js';

@@ -262,6 +262,7 @@
 
 // Mobile
 @media (min-width: 576px) and (max-width : 767px) {
+    .sidebar--condense { display: none !important;}
     .sidebar--right {
         display: flex !important;
     }
@@ -271,6 +272,7 @@
 // Tablette
 @media (min-width: 768px) and (max-width : 1023px) {
     .sidebar--left { display: none !important;}
+    .sidebar--condense { display: flex !important;}
     .sidebar--right {
         @include width-height (100%, 100%, calc((breakpoints(xxl) * 5) / 100));
         transition: max-width .4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -285,7 +287,7 @@
             .footer {
                 display: flex;
             }
-    
+
         }
     }
     .navbar {
@@ -304,5 +306,5 @@
 
 // Laptop L
 @media (min-width: 1440px) {
-
+    // .sidebar--condense { display: none !important;}
 }

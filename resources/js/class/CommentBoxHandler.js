@@ -9,88 +9,75 @@ export default class CommentBoxHandler {
      * @param {string} commentListSelector - Sélecteur du conteneur de la liste des commentaires
      */
     constructor(formSelector, textareaSelector, blocShowMsgSelector, commentListSelector) {
-        // Sélection des éléments du DOM
+        console.log('CommentBoxHandler initialisé avec:', { formSelector, textareaSelector, blocShowMsgSelector, commentListSelector });
         this.form = document.querySelector(formSelector);
-        this.textareaSelector = textareaSelector;
+        this.textarea = document.querySelector(textareaSelector);
         this.blocShowMsg = document.querySelector(blocShowMsgSelector);
         this.commentList = document.querySelector(commentListSelector);
+        
+        console.log('Éléments trouvés:', {
+            form: !!this.form,
+            textarea: !!this.textarea,
+            blocShowMsg: !!this.blocShowMsg,
+            commentList: !!this.commentList
+        });
+        
         this.init();
     }
 
-    // Initialise l'écouteur d'événement sur le formulaire
     init() {
-        if (!this.form) return;
-        this.form.addEventListener('submit', (e) => this.handleSubmit(e));
+        if (this.form) {
+            console.log('Ajout de l\'écouteur d\'événement sur le formulaire');
+            this.form.addEventListener('submit', this.handleSubmit.bind(this));
+        } else {
+            console.log('Formulaire non trouvé:', this.form);
+        }
     }
 
     // Gère la soumission du formulaire
     handleSubmit(e) {
+        console.log('Soumission du formulaire détectée');
         e.preventDefault();
-        // Nettoyer les anciens messages d'alerte
-        let msgBox = this.blocShowMsg?.querySelector('.comment-message');
-        if (msgBox) msgBox.remove();
 
         const formData = new FormData(this.form);
-        const url = this.form.action;
-        const commentListEl = this.commentList;
+        let msgBox;
 
-        // Envoi AJAX du formulaire
-        fetch(url, {
+        console.log('Envoi de la requête AJAX...');
+        fetch(this.form.action, {
             method: 'POST',
+            body: formData,
             headers: {
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-            },
-            body: formData
+                'X-Requested-With': 'XMLHttpRequest'
+            }
         })
         .then(res => res.json())
         .then(data => {
+            console.log('Réponse reçue:', data);
             // Création du bloc message
-            msgBox = document.createElement('div');
-            msgBox.className = 'comment-message';
-            if (data.success && data.comment_html) {
-                if (commentListEl) {
-                    commentListEl.insertAdjacentHTML('afterbegin', data.comment_html);
-                    if (typeof window.lineClampInit === 'function') window.lineClampInit();
-                    // Réinitialiser les triggers JS sur les nouveaux commentaires
-                    if (typeof window.initCommentTriggers === 'function') {
-                        window.initCommentTriggers();
-                    }
-                }
-                // Vide le textarea
-                this.form.querySelector(this.textareaSelector).value = '';
-                // (Optionnel) Réinitialise l'import d'image si présent
-                const imgPreview = this.form.querySelector('.comment__import-img');
-                if (imgPreview) imgPreview.src = '';
-                msgBox.textContent = 'Commentaire envoyé avec succès !';
-                msgBox.classList.add('success');
-                this.blocShowMsg?.prepend(msgBox);
-                setTimeout(() => { msgBox.remove(); }, 2000);
-                // Fermer la box de commentaire si c'est une box de réponse
-                if (this.form.classList.contains('comment-reply')) {
-                    this.form.classList.remove('is-visible');
-                    // Réafficher la box principale si elle existe
-                    const mainBox = document.querySelector('.comment-box');
-                    if (mainBox) {
-                        mainBox.style.display = 'flex';
-                        const mainBoxContainer = document.querySelector('.comment-box__container');
-                        if (mainBoxContainer) mainBoxContainer.classList.remove('is-active');
+            const blocShowMsg = document.querySelector('.bloc__show-msg');
+            msgBox = document.createElement('p');
+            msgBox.className = 'comment-message success';
+            msgBox.textContent = data.message || 'Commentaire ajouté avec succès !';
 
-                        document.querySelectorAll('.image-import').forEach(importBloc => {
-                            const fileInput = importBloc.querySelector('.image-import__input');
-                            const imgBloc = importBloc.querySelector('.image-import__preview');
-                            const closeBtn = importBloc.querySelector('.image-import__close');
-                            const img = imgBloc ? imgBloc.querySelector('img') : null;
-                        
-                            // Fermeture de l'image importée
-                            if (closeBtn && img && fileInput) {
-                                imgBloc.style.display = 'none';
-                                closeBtn.style.display = 'none';
-                                importBloc.classList.remove('is-import');
-                                img.src = '';
-                                fileInput.value = '';
-                            }
-                        });
-                    }
+            if (data.success) {
+                // Ajout du commentaire à la liste
+                if (this.commentList && data.comment_html) {
+                    this.commentList.insertAdjacentHTML('afterbegin', data.comment_html);
+                }
+
+                // Vidage du textarea
+                if (this.textarea) {
+                    this.textarea.value = '';
+                }
+
+                // Affichage du message de succès
+                this.blocShowMsg?.prepend(msgBox);
+                setTimeout(() => { msgBox.remove(); }, 3000);
+
+                // Gestion spécifique selon le type de formulaire
+                if (this.form.classList.contains('comment-reply')) {
+                    // Masquer le formulaire de réponse
+                    this.form.style.display = 'none';
                 } else if (this.form.classList.contains('comment-box')) {
                     // Réafficher la box principale si elle existe
                     const mainBox = document.querySelector('.comment-box');
@@ -100,21 +87,6 @@ export default class CommentBoxHandler {
                         if (COMMENT_INPUT) COMMENT_INPUT.classList.remove('is-focus');
                         const mainBoxContainer = document.querySelector('.comment-box__container');
                         if (mainBoxContainer) mainBoxContainer.classList.remove('is-active');
-                        document.querySelectorAll('.image-import').forEach(importBloc => {
-                            const fileInput = importBloc.querySelector('.image-import__input');
-                            const imgBloc = importBloc.querySelector('.image-import__preview');
-                            const closeBtn = importBloc.querySelector('.image-import__close');
-                            const img = imgBloc ? imgBloc.querySelector('img') : null;
-                        
-                            // Fermeture de l'image importée
-                            if (closeBtn && img && fileInput) {
-                                imgBloc.style.display = 'none';
-                                closeBtn.style.display = 'none';
-                                importBloc.classList.remove('is-import');
-                                img.src = '';
-                                fileInput.value = '';
-                            }
-                        });
                     }
                 }
             } else {
@@ -126,9 +98,9 @@ export default class CommentBoxHandler {
         })
         .catch(err => {
             console.error('Erreur lors de l\'envoi du commentaire:', err);
-            msgBox = document.createElement('div');
+            msgBox = document.createElement('p');
             msgBox.className = 'comment-message error';
-            msgBox.textContent = 'Le champ commentaire ne peut pas être vide. Veuillez réessayer.';
+            msgBox.textContent = 'Une erreur est survenue lors de l\'envoi du commentaire.';
             this.blocShowMsg?.prepend(msgBox);
             setTimeout(() => { msgBox.remove(); }, 5000);
         });
@@ -143,48 +115,21 @@ document.addEventListener('click', function(e) {
         const commentDiv = e.target.closest('.comment');
         const contentText = commentDiv.querySelector('.comment__content-text');
         const contentP = commentDiv.querySelector('.text__paragraph');
-        const contentImg = commentDiv.querySelector('.comment__content-img img')
         const originalText = contentP.textContent;
-        const imgSrc = contentImg?.src ?? "Pas d'image";
-        const extraClass = "comment-edit__import"
-        const inputClass = "comment-edit__import-input"
-        const previewClass = "comment-edit__import-img"
-        const btnClass = "comment-edit-box__btn comment-edit-box__btn--image tooltip tooltip--top-right"
-        const btnClose = "comment-edit__import-close"
 
-        
         // Crée un formulaire inline
         const form = document.createElement('form');
         form.className = 'comment-edit-form';
         form.innerHTML = `
             <div class="bloc__textarea">
-                <textarea type="text" class="comment-edit__textarea" name="comment">${escapeHTML(originalText)}</textarea>
+                <textarea type="text" class="comment-edit__textarea" name="comment">${originalText}</textarea>
             </div>
-            
-            <div class="image-import ${ extraClass ?? '' }">
-                <input type="file" name="import__photo" class="image-import__input ${ inputClass ?? '' }" accept="image/jpeg,image/jpg,image/png" hidden>
-                <div class="image-import__preview ${ previewClass ?? '' }">
-                    <img src="${ escapeHTML(imgSrc) }" alt="Aperçu de l'image">
-                </div>
-                <div class="image-import__browse ${ btnClass ?? '' }" data-title="Importer une image"><i class="ri ri-image-fill ri-lg"></i></div>
-                <div class="image-import__close ${ btnClose ?? '' }"><i class="ri ri-close-fill"></i></div>
-            </div>
-            <input type="hidden" name="remove_image" value="0">
             <div class="s-stack">
                 <button class="btn btn-sm btn-primary" type="submit">Enregistrer</button>
                 <button class="btn btn-sm btn-outlined-secondary cancel-edit" type="button">Annuler</button>
             </div>
         `;
-        // Initialiser l'import d'image sur ce formulaire nouvellement créé
-        if (window.initImageImport) window.initImageImport(form);
-        // Ajout gestion suppression image
-        const closeBtn = form.querySelector('.image-import__close');
-        const removeInput = form.querySelector('input[name="remove_image"]');
-        if (closeBtn && removeInput) {
-            closeBtn.addEventListener('click', function() {
-                removeInput.value = "1";
-            });
-        }
+
         contentText.replaceWith(form);
 
         form.querySelector('.cancel-edit').onclick = () => {
@@ -242,16 +187,6 @@ document.addEventListener('click', function(e) {
                 }
             });
         };
-
-        // Désactive le bouton enregistrer si textarea vide
-        const textarea = form.querySelector('textarea[name="comment"]');
-        const submitBtn = form.querySelector('button[type="submit"]');
-        if (textarea && submitBtn) {
-            submitBtn.disabled = textarea.value.trim().length === 0;
-            textarea.addEventListener('input', function() {
-                submitBtn.disabled = this.value.trim().length === 0;
-            });
-        }
     }
 
     // Suppression d'un commentaire
@@ -291,7 +226,6 @@ document.addEventListener('click', function(e) {
         });
     }
 });
-
 
 // Fonction confirmAction réutilisable
 function confirmAction(message, onConfirm) {

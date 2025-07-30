@@ -8,12 +8,35 @@
                 </a>
             </li>
 
+            @php
+                $activeCategory = null;
+                $otherCategories = collect();
+                
+                foreach ($categories as $category) {
+                    if (request()->is('home/category/' . $category->slug)) {
+                        $activeCategory = $category;
+                    } else {
+                        $otherCategories->push($category);
+                    }
+                }
+            @endphp
 
+            {{-- Afficher d'abord la catégorie active --}}
+            @if($activeCategory)
+                <li class="navbar__list-li">
+                    <a href="{{ route('category', ['category' => $activeCategory->slug]) }}" class="navbar__list-link is-active">
+                        <span class="navbar__list-text">
+                            {{ $activeCategory->name }}
+                        </span>
+                    </a>
+                </li>
+            @endif
 
-            @foreach ($categories as $category)
+            {{-- Puis afficher les autres catégories --}}
+            @foreach ($otherCategories as $category)
                 @if($category->slug)
                 <li class="navbar__list-li">
-                    <a href="{{ route('category', ['category' => $category->slug]) }}" class="navbar__list-link {{ request()->is('home/category/' . $category->slug) ? 'is-active' : '' }}">
+                    <a href="{{ route('category', ['category' => $category->slug]) }}" class="navbar__list-link">
                         <span class="navbar__list-text">
                             {{ $category->name }}
                         </span>

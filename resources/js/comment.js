@@ -1,10 +1,5 @@
 import CommentBoxHandler from './class/CommentBoxHandler';
 
-// Initialisation pour la box principale
-new CommentBoxHandler('.comment-box', '.comment-box__textarea', '.bloc__show-msg', '.comment-list');
-// Initialisation pour la box de réponse
-new CommentBoxHandler('.comment-reply', '.comment-reply__textarea', '.bloc__show-msg', '.reply__reply-list');
-
 let loading = false;
 let hasMore = true;
 const commentList = document.querySelector('.comment-list');
@@ -67,6 +62,10 @@ function loadMoreComments(callback) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+    // Initialisation des CommentBoxHandler
+    new CommentBoxHandler('.comment-box', '.comment-box__textarea', '.bloc__show-msg', '.comment-list');
+    new CommentBoxHandler('.comment-reply', '.comment-reply__textarea', '.bloc__show-msg', '.reply__reply-list');
+    
     document.querySelectorAll('.btn-show__stack').forEach(function (btnStack) {
         const showMoreBtn = btnStack.querySelector('.btn__show-more');
         const showLessBtn = btnStack.querySelector('.btn__show-less');

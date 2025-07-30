@@ -12,7 +12,7 @@ class Post extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title', 'content', 'slug', 'user_id', 'category_id', 'reading_time', 'cover_image', 'published_at', 'views_count', 'shares_count'
+        'title', 'content', 'slug', 'user_id', 'category_id', 'reading_time', 'cover_image', 'published_at', 'views_count'
     ];
 
     protected $casts = [
@@ -59,11 +59,6 @@ class Post extends Model
     public function getSharesCountAttribute()
     {
         return $this->shares()->count();
-    }
-
-    public function shares()
-    {
-        return $this->hasMany(Share::class);
     }
 
     public function bookmarkedBy()

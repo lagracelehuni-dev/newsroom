@@ -24,7 +24,6 @@ return new class extends Migration
             $table->string('cover_image')->nullable();
             $table->timestamp('published_at')->nullable();
             $table->unsignedBigInteger('views_count')->default(0);
-            $table->integer('shares_count')->default(0);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

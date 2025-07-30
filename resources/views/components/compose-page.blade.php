@@ -104,14 +104,14 @@
 
                     <!-- Importer une photo (optionnelle) -->
                     <div class="c-form__bloc">
-                        <x-image-import
+                        <x-article-image-import
                             name="compose__cover-image"
                             previewClass="compose__import-preview"
                             btnClass="compose__import-btn btn btn-outlined-secondary "
                             extraClass="compose__import"
                             btnClose="compose__import-close"
                         >Importer une photo de couverture
-                        </x-image-import>
+                        </x-article-image-import>
 
                         @error("compose__cover-image")
                             <p class="p--error"><i class="ri-error-warning-fill"></i> {{ $message }} </p>

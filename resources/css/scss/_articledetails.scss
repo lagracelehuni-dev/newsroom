@@ -104,10 +104,13 @@
 
     .article__text {
         width: 100%;
-        @include flexbox (flex, column, start, start, 1rem);
+        @include flexbox (flex, column, start, start, .2rem);
         padding: .5rem 1rem;
 
         .article__title {
+            width: 100%;
+            padding-bottom: .2rem;
+            border-bottom: 1px solid var(--gray50);
             font-size: $h3-font-size;
             font-weight: $font-weight-bold;
         }
